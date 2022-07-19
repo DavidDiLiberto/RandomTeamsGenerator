@@ -19,18 +19,18 @@ public struct TeamsView: View {
     @Binding var teamsList: [Team]
     @Binding var teamColors: [String]
     @Binding var removedTeamColors: [String]
-    var roundedPlayersPerTeam: Double{
+    var roundedPlayersPerTeam: Int{
         let numberOfPlayers = playersList.count + removedPlayersList.count
         let numberOfTeamsD = teamsList.count
         let Value: Double = Double(numberOfPlayers/numberOfTeamsD)
         let rValue = floor(Value)
         
-        return rValue
+        return Int(rValue)
     }
     var rest: Int{
         playersList.count % teamsList.count
     }
-    var biggerTeamSize: Double{
+    var biggerTeamSize: Int{
         roundedPlayersPerTeam + 1
     }
     var smallerNumberOfDropDowns: Int{
@@ -137,93 +137,117 @@ public struct TeamsView: View {
     var form: some View {
         
         Form{
-            VStack(alignment: .leading, spacing: 20) {
-                ForEach(0..<teamsList.count, id: \.self) { index4 in
-                    
-                    HStack(alignment: .top, spacing: 10){
-                        Text("\(teamsList[index4].teamname):")
-                            .bold()
+            if restForRandomizer == 0{
+                VStack(alignment: .leading, spacing: 20) {
+                    ForEach(0..<teamsList.count, id: \.self) { index4 in
                         
-                        VStack(alignment: .trailing, spacing: 5){
+                        HStack(alignment: .top, spacing: 10){
+                            Text("\(teamsList[index4].teamname):")
+                                .bold()
                             
-                            
-                            
-                            if restForRandomizer == 0 {
-                                ForEach(0..<teamsList.count){index in
-                                    
-                                    
-                                        if !playersList.isEmpty{
-                                            ForEach(0..<smallerNumberOfDropDowns) { _ in
-                                                
-                                                Image(systemName: "person")
-                                                
-                                                
-                                            }.frame(width: 100, height: 20, alignment: .trailing)
-                                                .alignmentGuide(.trailing) { d in
-                                                    d[.trailing]
-                                                }
-                                        }
-                                        
-                                    
-                                }
-                            }
-                            if restForRandomizer != 0 {
-                                ForEach(0..<restForRandomizer){ index in
-                                    
-                                        if !playersList.isEmpty{
-                                            ForEach(0..<biggerNumberOfDropDowns) { index10 in
-                                                
-                                                Image(systemName: "person")
-                                                
-                                                
-                                            }.frame(width: 100, height: 20, alignment: .trailing)
-                                                .alignmentGuide(.trailing) { d in
-                                                    d[.trailing]
-                                                }
-                                            
-                                        }
-                                    
-                                }
-                                ForEach(restForRandomizer..<teamsList.count){index in
-                                    
-                                        if !playersList.isEmpty{
-                                            ForEach(0..<smallerNumberOfDropDowns) { _ in
-                                                
-                                                Image(systemName: "person")
-                                                
-                                                
-                                            }.frame(width: 100, height: 20, alignment: .trailing)
-                                                .alignmentGuide(.trailing) { d in
-                                                    d[.trailing]
-                                                }
-                                            
-                                        }
-                                    }
+                            VStack(alignment: .trailing, spacing: 5){
                                 
-                            }
-                            else
-                            {
-                                ForEach(0..<teamsList[index4].members.count, id: \.self) { index5 in
-                                    
-                                    Text("\(teamsList[index4].members[index5].name)")
-                                }.frame(width: 100, height: 20, alignment: .trailing)
-                                    .alignmentGuide(.trailing) { d in
-                                        d[.trailing]
-                                    }
+                                
+                                if teamsList[0].members.isEmpty{
+                                    ForEach(0..<smallerNumberOfDropDowns) { _ in
+                                        
+                                        Image(systemName: "person")
+                                        
+                                        
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }else
+                                {
+                                    ForEach(0..<teamsList[index4].members.count, id: \.self) { index5 in
+                                        
+                                        Text("\(teamsList[index4].members[index5].name)")
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .border(.blue)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .border(.blue)
+                }
+            }else{
+                VStack(alignment: .leading, spacing: 20) {
+                    
+                    ForEach(0..<restForRandomizer){ index in
+                        
+                        HStack(alignment: .top, spacing: 10){
+                            Text("\(teamsList[index].teamname):")
+                                .bold()
+                            
+                            VStack(alignment: .trailing, spacing: 5){
+                                
+                                
+                                if teamsList[0].members.isEmpty{
+                                    ForEach(0..<biggerNumberOfDropDowns) { _ in
+                                        
+                                        Image(systemName: "person")
+                                        
+                                        
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }else
+                                {
+                                    ForEach(0..<teamsList[index].members.count, id: \.self) { index5 in
+                                        
+                                        Text("\(teamsList[index].members[index5].name)")
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .border(.blue)
+                    }
+                    ForEach(restForRandomizer..<teamsList.count){index in
+                        HStack(alignment: .top, spacing: 10){
+                            Text("\(teamsList[index].teamname):")
+                                .bold()
+                            
+                            VStack(alignment: .trailing, spacing: 5){
+                                
+                                
+                                if teamsList[0].members.isEmpty{
+                                    ForEach(0..<smallerNumberOfDropDowns) { _ in
+                                        
+                                        Image(systemName: "person")
+                                        
+                                        
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }else
+                                {
+                                    ForEach(0..<teamsList[index].members.count, id: \.self) { index5 in
+                                        
+                                        Text("\(teamsList[index].members[index5].name)")
+                                    }.frame(width: 100, height: 20, alignment: .trailing)
+                                        .alignmentGuide(.trailing) { d in
+                                            d[.trailing]
+                                        }
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .border(.blue)
+                    }
                 }
                 
-                
-                
             }
-            
         }
-        
-        
     }
     
     func addNewTeam(){
@@ -259,6 +283,7 @@ public struct TeamsView: View {
             self.teamsList.removeLast(1)
         }
     }
+    
     
     
     func randomTeams(){
