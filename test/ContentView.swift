@@ -25,7 +25,7 @@ struct ContentView: View {
     @State var removedPlayersList: [Player] = []
     @State var numberOfPLayers = 0
     @State var teamsList: [Team] = []
-    @State var teamColors: [String] = ["Red", "Blue", "Green", "Yellow", "Pink", "Brown", "Black", "White", "Orange", "Purple"]
+    @State var teamColors: [String] = ["🔴 Red", "🔵 Blue", "🟢 Green", "🟡 Yellow", "💖 Pink", "🟤 Brown", "⚫️ Black", "⚪️ White", "🟠 Orange", "🟣 Purple"]
     @State var removedTeamColors: [String] = []
     
     var body: some View {
