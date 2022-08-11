@@ -44,14 +44,7 @@ public struct MatchView: View {
         
         Text("Match")
         
-        Button{
-            createMatchplan()
-            
-        }label: {
-            Label("Create Matchplan", systemImage: "")
-        }
-        .buttonStyle(RoundedRectangleButtonStyle())
-        .frame(width: 200, height: 55, alignment: .center)
+        
         
         if matches.count>0{
         VStack{
@@ -69,26 +62,7 @@ public struct MatchView: View {
     }
     
     
-    func createMatchplan(){
-        matches.removeAll()
-        for index1 in 0..<teamsList.count-1{
-            counter += 1
-            matchcounter += 1
-            var counterB = 0
-            for index2 in 0..<teamsList.count-counter{
-                
-            let newMatch = Match(id: UUID(), matchnumber: matchcounter + counterB, team1: "\(teamsList[index1].teamname)", team2: "\(teamsList[index1+index2+1].teamname)")
-            self.matches.append(newMatch)
-                counterB = counterB + teamsList.count-1
-                counterB -= index2
-                matches = matches.sorted(by: { $0.matchnumber < $1.matchnumber })
-            }
-            
-        }
-        counter = 0
-        matchcounter = 0
-        
-    }
+ 
     
 }
 

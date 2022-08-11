@@ -14,11 +14,16 @@ import SwiftUI
 
 public struct TeamsView: View {
     
+    @Binding var selectedTab: Int
+    @Binding var confirmTeamsCounter: Int
     @Binding var playersList: [Player]
     @Binding var removedPlayersList: [Player]
     @Binding var teamsList: [Team]
     @Binding var teamColors: [String]
     @Binding var removedTeamColors: [String]
+    @Binding var matches: [Match]
+    @Binding var counter: Int
+    @Binding var matchcounter: Int
     var roundedPlayersPerTeam: Int{
         let numberOfPlayers = playersList.count + removedPlayersList.count
         let numberOfTeamsD = teamsList.count
@@ -51,7 +56,7 @@ public struct TeamsView: View {
     var restForRandomizer: Int{
         (playersList.count + removedPlayersList.count) % teamsList.count
     }
-    struct RoundedRectangleButtonStyle: ButtonStyle {
+    struct RoundedRectangleButtonStyleBlue: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack {
                 Spacer()
@@ -60,6 +65,20 @@ public struct TeamsView: View {
             }
             .padding()
             .background(Color.blue)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
+    struct RoundedRectangleButtonStyleGreen: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.green)
             .background(RoundedRectangle(cornerRadius: .infinity))
             .cornerRadius(.infinity)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
@@ -100,8 +119,12 @@ public struct TeamsView: View {
                 
                 Stepper("Teamanzahl: \(teamsList.count)") {
                     addNewTeam()
+                    removeAllMembers()
+                    confirmTeamsCounter = 0
                 } onDecrement: {
                     deleteTeam()
+                    removeAllMembers()
+                    confirmTeamsCounter = 0
                 }
                 .padding(.horizontal, 50)
                 .padding(.vertical, 20)
@@ -119,14 +142,37 @@ public struct TeamsView: View {
                 
                 
             }
+            if confirmTeamsCounter == 0{
             Button{
                 randomTeams()
-                
+                confirmTeamsCounter += 1
             }label: {
                 Label("Random Teams", systemImage: "dice")
             }
-            .buttonStyle(RoundedRectangleButtonStyle())
+            .buttonStyle(RoundedRectangleButtonStyleBlue())
             .frame(width: 200, height: 55, alignment: .center)
+            }else{
+                
+                Button{
+                    randomTeams()
+                    
+                }label: {
+                    Label("Random Teams", systemImage: "dice")
+                }
+                .buttonStyle(RoundedRectangleButtonStyleBlue())
+                .frame(width: 200, height: 55, alignment: .center)
+                
+                
+                Button{
+                    createMatchplan()
+                    selectedTab = 3
+                         }label: {
+                             Label("Teams bestätigen", systemImage: "")
+                         }
+                         .buttonStyle(RoundedRectangleButtonStyleGreen())
+                         .frame(width: 200, height: 55, alignment: .center)
+            }
+         
             
             
         }
@@ -395,6 +441,32 @@ public struct TeamsView: View {
             
         }
             
+        }
+        
+    }
+    func createMatchplan(){
+        matches.removeAll()
+        for index1 in 0..<teamsList.count-1{
+            counter += 1
+            matchcounter += 1
+            var counterB = 0
+            for index2 in 0..<teamsList.count-counter{
+                
+            let newMatch = Match(id: UUID(), matchnumber: matchcounter + counterB, team1: "\(teamsList[index1].teamname)", team2: "\(teamsList[index1+index2+1].teamname)")
+            self.matches.append(newMatch)
+                counterB = counterB + teamsList.count-1
+                counterB -= index2
+                matches = matches.sorted(by: { $0.matchnumber < $1.matchnumber })
+            }
+            
+        }
+        counter = 0
+        matchcounter = 0
+        
+    }
+    func removeAllMembers(){
+        for i in 0..<teamsList.count{
+            teamsList[i].members.removeAll()
         }
         
     }

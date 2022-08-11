@@ -19,7 +19,7 @@ import UIKit
 
 struct ContentView: View {
     
-    
+    @State var confirmTeamsCounter = 0
     @State var selectedTab = 0
     @State var counter = 0
     @State var matchcounter = 0
@@ -40,7 +40,7 @@ struct ContentView: View {
                     Label("Players", systemImage: "person")
                 }
                 .tag(0)
-            TeamsView(playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamColors: $teamColors, removedTeamColors: $removedTeamColors)
+            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter)
                 .tabItem    {
                     Label("Teams", systemImage: "person.3.fill")
                 }
