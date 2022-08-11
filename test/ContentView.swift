@@ -21,10 +21,13 @@ struct ContentView: View {
     
     
     @State var selectedTab = 0
+    @State var counter = 0
+    @State var matchcounter = 0
     @State var playersList: [Player] = [Player(id: UUID(), name: "")]
     @State var removedPlayersList: [Player] = []
     @State var numberOfPLayers = 0
     @State var teamsList: [Team] = []
+    @State var matches: [Match] = []
     @State var teamColors: [String] = ["🔴 Red", "🔵 Blue", "🟢 Green", "🟡 Yellow", "💖 Pink", "🟤 Brown", "⚫️ Black", "⚪️ White", "🟠 Orange", "🟣 Purple"]
     @State var removedTeamColors: [String] = []
     
@@ -47,14 +50,14 @@ struct ContentView: View {
                     Label("Mode", systemImage: "gear")
                 }
                 .tag(2)
+            MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter)
+                .tabItem    {
+                    Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
+                }
+                .tag(3)
             ResultsView()
                 .tabItem    {
                     Label("Results", systemImage: "table")
-                }
-                .tag(3)
-            MatchView()
-                .tabItem    {
-                    Label("Match", systemImage: "figure.stand.line.dotted.figure.stand")
                 }
                 .tag(4)
             

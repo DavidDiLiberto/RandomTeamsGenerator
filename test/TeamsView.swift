@@ -309,6 +309,7 @@ public struct TeamsView: View {
     
     
     
+    
     func randomTeams(){
         
         if restForRandomizer == 0 {
