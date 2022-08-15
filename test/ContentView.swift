@@ -19,6 +19,8 @@ import UIKit
 
 struct ContentView: View {
     
+    
+    @State var selectedScore = 0
     @State var confirmTeamsCounter = 0
     @State var selectedTab = 0
     @State var counter = 0
@@ -50,7 +52,7 @@ struct ContentView: View {
                     Label("Mode", systemImage: "gear")
                 }
                 .tag(2)
-            MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter)
+            MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)
                 .tabItem    {
                     Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
                 }

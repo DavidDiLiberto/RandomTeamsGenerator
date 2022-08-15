@@ -15,3 +15,13 @@ struct ModeView: View {
         Text("Mode")
     }
 }
+
+
+//Picker("Score", selection: $matches[match].scoreteam2) {
+//    ForEach(scores, id: \.self) {i in
+//        Text("\(scores[i])")
+//    }
+//}
+//.pickerStyle(.wheel)
+//.frame(width: 20)
+//.clipped()
