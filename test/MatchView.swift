@@ -51,9 +51,11 @@ public struct MatchView: View {
             ForEach(0..<matches.count, id: \.self) { match in
                 HStack{
                 Text("Match \(matches[match].matchnumber):")
-                Text(String(matches[match].team1))
+                    Text(String(matches[match].team1.teamname))
+                    Text("\(matches[match].scoreteam1)")
                 Text(" vs ")
-                Text(String(matches[match].team2))
+                    Text("\(matches[match].scoreteam2)")
+                    Text(String(matches[match].team2.teamname))
                 }.padding(10)
             }
         }.padding()

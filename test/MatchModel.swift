@@ -12,8 +12,12 @@ struct Match: Identifiable{
     
     var id: UUID
     var matchnumber: Int
-    var team1: String
-    var team2: String
+    var team1: Team
+    var team2: Team
+    var scoreteam1: Int
+    var scoreteam2: Int
+    var winner: Team
+    
     
     
 }

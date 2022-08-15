@@ -452,7 +452,7 @@ public struct TeamsView: View {
             var counterB = 0
             for index2 in 0..<teamsList.count-counter{
                 
-            let newMatch = Match(id: UUID(), matchnumber: matchcounter + counterB, team1: "\(teamsList[index1].teamname)", team2: "\(teamsList[index1+index2+1].teamname)")
+                let newMatch = Match(id: UUID(), matchnumber: matchcounter + counterB, team1: teamsList[index1], team2: teamsList[index1+index2+1], scoreteam1: 0, scoreteam2: 0, winner: teamsList[index1])
             self.matches.append(newMatch)
                 counterB = counterB + teamsList.count-1
                 counterB -= index2
