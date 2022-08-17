@@ -22,6 +22,7 @@ public struct MatchView: View {
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
+    @Binding var commited:Bool 
     
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
@@ -61,7 +62,7 @@ public struct MatchView: View {
                 
                 List(0..<matches.count, id: \.self) { matchindex in
                     
-                    NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
+                    NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, commited: $commited)){
                         
                         HStack(alignment: .center){
                             Text("\(matches[matchindex].matchnumber):")
@@ -109,6 +110,7 @@ struct SingleMatchesView:  View{
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
+    @Binding var commited:Bool 
     
     struct RoundedRectangleButtonStyleGreen: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -119,6 +121,21 @@ struct SingleMatchesView:  View{
             }
             .padding()
             .background(Color.green)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
+    
+    struct RoundedRectangleButtonStyleRed: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.red)
             .background(RoundedRectangle(cornerRadius: .infinity))
             .cornerRadius(.infinity)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
@@ -163,25 +180,36 @@ struct SingleMatchesView:  View{
                 Text("\(match.team2.teamname)")
                 
             }
-            NavigationView{
-            NavigationLink(destination: MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
+           
+            if commited == false{
             Button{
                 declareWinner()
-                    
+                commited = true
             }label: {
                 Label("Ergebnis bestätigen", systemImage: "")
             }
             .buttonStyle(RoundedRectangleButtonStyleGreen())
             .frame(width: 250, height: 55, alignment: .center)
             
-            
+            }else{
+                Button{
+                    removeWandL()
+                    commited = false
+                }label: {
+                    Label("Ergebnis bearbeiten", systemImage: "")
+                }
+                .buttonStyle(RoundedRectangleButtonStyleRed())
+                .frame(width: 250, height: 55, alignment: .center)
+                
             }
-        }
-        }
+            }
+        
+        
     }
         
     
     func declareWinner(){
+        
         
         
         let team1index = teamsList.firstIndex(where: {$0.teamname == "\(match.team1.teamname)"})
@@ -200,6 +228,26 @@ struct SingleMatchesView:  View{
             teamsList[team1index ?? 0].loses += 1
         }
      
+    }
+    
+    func removeWandL(){
+        
+        let team1index = teamsList.firstIndex(where: {$0.teamname == "\(match.team1.teamname)"})
+        let team2index = teamsList.firstIndex(where: {$0.teamname == "\(match.team2.teamname)"})
+        
+        if match.scoreteam1 > match.scoreteam2{
+            
+            teamsList[team1index ?? 0].wins -= 1
+            teamsList[team2index ?? 0].loses -= 1
+            
+            
+        }else{
+           
+
+            teamsList[team2index ?? 0].wins -= 1
+            teamsList[team1index ?? 0].loses -= 1
+        }
+        
     }
     
     
