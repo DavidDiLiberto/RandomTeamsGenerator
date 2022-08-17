@@ -135,6 +135,8 @@ struct SingleMatchesView:  View{
                 .font(.system(size: 35))
                 .bold()
             
+          
+            
             HStack{
                 Text("\(match.team1.teamname)")
                 VStack{
@@ -180,17 +182,22 @@ struct SingleMatchesView:  View{
         
     
     func declareWinner(){
+        
+        
+        let team1index = teamsList.firstIndex(where: {$0.teamname == "\(match.team1.teamname)"})
+        let team2index = teamsList.firstIndex(where: {$0.teamname == "\(match.team2.teamname)"})
+        
         if match.scoreteam1 > match.scoreteam2{
             
+            teamsList[team1index ?? 0].wins += 1
+            teamsList[team2index ?? 0].loses += 1
             
-            match.team1.wins += 1
-            match.team2.loses += 1
             
         }else{
            
 
-            match.team2.wins += 1
-            match.team1.loses += 1
+            teamsList[team2index ?? 0].wins += 1
+            teamsList[team1index ?? 0].loses += 1
         }
      
     }
