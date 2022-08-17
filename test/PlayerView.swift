@@ -182,7 +182,7 @@ public struct PlayersView: View {
     func addNewTeam(){
         
         let randomNumber = Int.random(in: 0..<teamColors.count)
-        let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [])
+        let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [], wins: 0, loses: 0)
         self.teamsList.append(newTeam)
         self.teamColors.remove(at: randomNumber)
    
