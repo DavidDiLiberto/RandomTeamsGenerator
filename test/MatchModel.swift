@@ -17,6 +17,7 @@ struct Match: Identifiable{
     var scoreteam1: Int
     var scoreteam2: Int
     var winner: Team
+    var commited: Bool
     
     
     

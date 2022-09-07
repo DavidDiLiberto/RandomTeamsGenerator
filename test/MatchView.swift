@@ -22,7 +22,7 @@ public struct MatchView: View {
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
-    @Binding var commited:Bool 
+    
     
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
@@ -62,12 +62,16 @@ public struct MatchView: View {
                 
                 List(0..<matches.count, id: \.self) { matchindex in
                     
-                    NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, commited: $commited)){
+                    NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
+                        
+                        
                         
                         HStack(alignment: .center){
                             Text("\(matches[matchindex].matchnumber):")
-                            Text("\(matches[matchindex].team1.teamname)" + "\n")
+                            Text("\(matches[matchindex].team1.teamname)")
+                            Spacer()
                             Text( "\(matches[matchindex].scoreteam1) vs \(matches[matchindex].scoreteam2)")
+                            Spacer()
                             Text("\(matches[matchindex].team2.teamname)")
                             
                             
@@ -110,8 +114,8 @@ struct SingleMatchesView:  View{
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
-    @Binding var commited:Bool 
     
+
     struct RoundedRectangleButtonStyleGreen: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack {
@@ -151,50 +155,86 @@ struct SingleMatchesView:  View{
             Text("Match \(match.matchnumber)")
                 .font(.system(size: 35))
                 .bold()
-            
-          
-            
-            HStack{
-                Text("\(match.team1.teamname)")
-                VStack{
-                    Picker("Score", selection: $match.scoreteam1) {
-                        ForEach(scores, id: \.self) {i in
-                            Text("\(scores[i])").scaleEffect(x: 5)
-                        }
-                    }.scaleEffect(x: 0.2)
-                }
-                .pickerStyle(.wheel)
-                .frame(width: 20)
-                .clipped()
-                Text(":")
-                VStack{
-                    Picker("Score", selection: $match.scoreteam2) {
-                        ForEach(scores, id: \.self) {i in
-                            Text("\(scores[i])").scaleEffect(x: 5)
-                        }
-                    }.scaleEffect(x: 0.2)
-                }
-                .pickerStyle(.wheel)
-                .frame(width: 20)
-                .clipped()
-                Text("\(match.team2.teamname)")
+                .padding()
                 
-            }
+                
+            
            
-            if commited == false{
+            if match.commited == false{
+                
+                HStack(){
+                    
+                    VStack{
+                        Text("\(match.team1.teamname)").bold().padding(.horizontal, 40)
+                        
+                    }
+                    
+                    VStack{
+                        Picker("Score", selection: $match.scoreteam1) {
+                            ForEach(scores, id: \.self) {i in
+                                Text("\(scores[i])").bold().scaleEffect(x: 5)
+                            }
+                        }.scaleEffect(x: 0.2)
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(width: 20)
+                    .clipped()
+                    Text(":").bold()
+                    VStack{
+                        Picker("Score", selection: $match.scoreteam2) {
+                            ForEach(scores, id: \.self) {i in
+                                Text("\(scores[i])").bold().scaleEffect(x: 5)
+                            }
+                        }.scaleEffect(x: 0.2)
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(width: 20)
+                    .clipped()
+                    VStack{
+                        Text("\(match.team2.teamname)").bold().padding(.horizontal, 40)
+                        
+                    }
+                   
+                    
+                }
+                
+                HStack(alignment: .top){
+                    VStack{
+                        ForEach(0..<match.team1.members.count){i in
+                            Text("\(match.team1.members[i].name)")
+                        }
+                    }.padding(.leading, 69)
+                    Spacer()
+                    VStack{
+                        ForEach(0..<match.team2.members.count){i in
+                            Text("\(match.team2.members[i].name)")
+                        }
+                    }.padding(.trailing, 69)
+                }
+
             Button{
                 declareWinner()
-                commited = true
+                
             }label: {
                 Label("Ergebnis bestätigen", systemImage: "")
             }
             .buttonStyle(RoundedRectangleButtonStyleGreen())
             .frame(width: 250, height: 55, alignment: .center)
-            
+            .padding()
+                        
             }else{
+                
+                HStack{
+                    Text("\(match.team1.teamname)").bold()
+                    Text("\(match.scoreteam1)").bold()
+                    Text(":").bold()
+                    Text("\(match.scoreteam2)").bold()
+                    Text("\(match.team2.teamname)").bold()
+                    
+                }.padding()
                 Button{
                     removeWandL()
-                    commited = false
+                    
                 }label: {
                     Label("Ergebnis bearbeiten", systemImage: "")
                 }
@@ -220,12 +260,15 @@ struct SingleMatchesView:  View{
             teamsList[team1index ?? 0].wins += 1
             teamsList[team2index ?? 0].loses += 1
             
+            match.commited = true
             
         }else{
            
 
             teamsList[team2index ?? 0].wins += 1
             teamsList[team1index ?? 0].loses += 1
+            
+            match.commited = true
         }
      
     }
@@ -240,15 +283,21 @@ struct SingleMatchesView:  View{
             teamsList[team1index ?? 0].wins -= 1
             teamsList[team2index ?? 0].loses -= 1
             
+            match.commited = false
             
         }else{
            
 
             teamsList[team2index ?? 0].wins -= 1
             teamsList[team1index ?? 0].loses -= 1
+            
+            match.commited = false
+            
         }
         
     }
+    
+  
     
     
 }
