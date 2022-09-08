@@ -23,8 +23,6 @@ public struct MatchView: View {
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
     
-    
-    
     struct RoundedRectangleButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack {
@@ -53,7 +51,6 @@ public struct MatchView: View {
             .bold()
     }
     
-    
     var form: some View {
         
         NavigationView{
@@ -61,10 +58,7 @@ public struct MatchView: View {
             if matches.count>0{
                 
                 List(0..<matches.count, id: \.self) { matchindex in
-                    
                     NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
-                        
-                        
                         
                         HStack(alignment: .center){
                             Text("\(matches[matchindex].matchnumber):")
@@ -73,35 +67,13 @@ public struct MatchView: View {
                             Text( "\(matches[matchindex].scoreteam1) vs \(matches[matchindex].scoreteam2)")
                             Spacer()
                             Text("\(matches[matchindex].team2.teamname)")
-                            
-                            
                         }
-                        
                     }
-                    
-                    
-                    
-                    
-                    
-                    
                 }
             }
-            
         }
-        
-        
-        
-        
-        
-        
-        
     }
-    
 }
-
-
-
-
 
 
 struct SingleMatchesView:  View{
@@ -116,7 +88,7 @@ struct SingleMatchesView:  View{
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
     
-
+    
     struct RoundedRectangleButtonStyleGreen: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack {
@@ -149,18 +121,12 @@ struct SingleMatchesView:  View{
     
     
     var body: some View {
-        
-        
-        
         VStack{
             Text("Match \(match.matchnumber)")
                 .font(.system(size: 35))
                 .bold()
                 .padding()
-                
-                
             
-           
             if match.commited == false{
                 
                 HStack(){
@@ -169,7 +135,6 @@ struct SingleMatchesView:  View{
                         Text("\(match.team1.teamname)").bold().padding(.horizontal, 40)
                         
                     }
-                    
                     VStack{
                         Picker("Score", selection: $match.scoreteam1) {
                             ForEach(scores, id: \.self) {i in
@@ -195,10 +160,7 @@ struct SingleMatchesView:  View{
                         Text("\(match.team2.teamname)").bold().padding(.horizontal, 40)
                         
                     }
-                   
-                    
                 }
-                
                 HStack(alignment: .top){
                     VStack{
                         ForEach(0..<match.team1.members.count){i in
@@ -212,20 +174,16 @@ struct SingleMatchesView:  View{
                         }
                     }.padding(.trailing, 69)
                 }
-
-            Button{
+                Button{
+                    declareWinner()
+                    self.presentationMode.wrappedValue.dismiss()
+                }label: {
+                    Label("Ergebnis bestätigen", systemImage: "")
+                }
+                .buttonStyle(RoundedRectangleButtonStyleGreen())
+                .frame(width: 250, height: 55, alignment: .center)
+                .padding()
                 
-                declareWinner()	
-                self.presentationMode.wrappedValue.dismiss()
-               
-                
-            }label: {
-                Label("Ergebnis bestätigen", systemImage: "")
-            }
-            .buttonStyle(RoundedRectangleButtonStyleGreen())
-            .frame(width: 250, height: 55, alignment: .center)
-            .padding()
-                        
             }else{
                 
                 HStack{
@@ -244,18 +202,11 @@ struct SingleMatchesView:  View{
                 }
                 .buttonStyle(RoundedRectangleButtonStyleRed())
                 .frame(width: 250, height: 55, alignment: .center)
-                
             }
-            }
-        
-        
+        }
     }
-        
     
     func declareWinner(){
-        
-        
-        
         let team1index = teamsList.firstIndex(where: {$0.teamname == "\(match.team1.teamname)"})
         let team2index = teamsList.firstIndex(where: {$0.teamname == "\(match.team2.teamname)"})
         
@@ -267,14 +218,11 @@ struct SingleMatchesView:  View{
             match.commited = true
             
         }else{
-           
-
             teamsList[team2index ?? 0].wins += 1
             teamsList[team1index ?? 0].loses += 1
             
             match.commited = true
         }
-     
     }
     
     func removeWandL(){
@@ -290,20 +238,11 @@ struct SingleMatchesView:  View{
             match.commited = false
             
         }else{
-           
-
             teamsList[team2index ?? 0].wins -= 1
             teamsList[team1index ?? 0].loses -= 1
-            
             match.commited = false
-            
         }
-        
     }
-    
-  
-    
-    
 }
 
 
