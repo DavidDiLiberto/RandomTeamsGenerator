@@ -105,6 +105,7 @@ public struct MatchView: View {
 
 
 struct SingleMatchesView:  View{
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Binding var playersList: [Player]
     @Binding var teamsList: [Team]
@@ -213,7 +214,10 @@ struct SingleMatchesView:  View{
                 }
 
             Button{
-                declareWinner()
+                
+                declareWinner()	
+                self.presentationMode.wrappedValue.dismiss()
+               
                 
             }label: {
                 Label("Ergebnis bestätigen", systemImage: "")
