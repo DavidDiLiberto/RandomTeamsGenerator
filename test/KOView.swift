@@ -8,11 +8,11 @@
 import SwiftUI
 
 ////////////////////////////////////////////
-// MARK: ModeView
+// MARK: KOView
 
-struct ModeView: View {
+struct KOView: View {
     var body: some View {
-        Text("Mode")
+        Text("KO Runde")
     }
 }
 

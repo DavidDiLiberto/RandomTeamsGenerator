@@ -47,19 +47,19 @@ struct ContentView: View {
                     Label("Teams", systemImage: "person.3.fill")
                 }
                 .tag(1)
-            ModeView()
-                .tabItem    {
-                    Label("Mode", systemImage: "gear")
-                }
-                .tag(2)
             MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)
                 .tabItem    {
                     Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
                 }
-                .tag(3)
+                .tag(2)
             ResultsView(playersList: $playersList, teamsList: $teamsList, matches: $matches)
                 .tabItem    {
                     Label("Results", systemImage: "table")
+                }
+                .tag(3)
+            KOView()
+                .tabItem    {
+                    Label("KO Runde", systemImage: "trophy.fill")
                 }
                 .tag(4)
             

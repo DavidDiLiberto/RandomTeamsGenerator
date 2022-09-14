@@ -29,7 +29,7 @@ struct ResultsView: View {
     
     var title: some View{
         
-        Text("Tabelle").font(.system(size: 35)).bold().padding()
+        Text("Tabelle").font(.system(size: 35)).bold()
         
     }
     

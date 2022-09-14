@@ -145,6 +145,7 @@ public struct TeamsView: View {
             if confirmTeamsCounter == 0{
             Button{
                 randomTeams()
+                resetStats()
                 confirmTeamsCounter += 1
             }label: {
                 Label("Random Teams", systemImage: "dice")
@@ -165,7 +166,7 @@ public struct TeamsView: View {
                 
                 Button{
                     createMatchplan()
-                    selectedTab = 3
+                    selectedTab = 2
                          }label: {
                              Label("Teams bestätigen", systemImage: "")
                          }
