@@ -75,7 +75,7 @@ public struct PlayersView: View {
                 .font(.system(size: 18))
                 .padding()
             
-            Button("bestätigen"){
+            Button("Bestätigen"){
                 playersList = playersList.filter(filterArray)
                 hideKeyboard()
                 self.addNewTeam()

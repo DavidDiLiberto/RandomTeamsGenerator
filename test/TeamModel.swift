@@ -16,6 +16,8 @@ struct Team: Identifiable{
     var loses: Int
     
     
+    
+    
 }
 
 

@@ -60,13 +60,25 @@ public struct MatchView: View {
                 List(0..<matches.count, id: \.self) { matchindex in
                     NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
                         
-                        HStack(alignment: .center){
-                            Text("\(matches[matchindex].matchnumber):")
-                            Text("\(matches[matchindex].team1.teamname)")
-                            Spacer()
-                            Text( "\(matches[matchindex].scoreteam1) vs \(matches[matchindex].scoreteam2)")
-                            Spacer()
-                            Text("\(matches[matchindex].team2.teamname)")
+                        
+                        if matches[matchindex].commited == true{
+                            HStack(alignment: .center){
+                                Text("\(matches[matchindex].matchnumber):")
+                                Text("\(matches[matchindex].team1.teamname)")
+                                Spacer()
+                                Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
+                                Spacer()
+                                Text("\(matches[matchindex].team2.teamname)")
+                            }
+                        }else{
+                            HStack(alignment: .center){
+                                Text("\(matches[matchindex].matchnumber):")
+                                Text("\(matches[matchindex].team1.teamname)")
+                                Spacer()
+                                Text("vs.")
+                                Spacer()
+                                Text("\(matches[matchindex].team2.teamname)")
+                            }
                         }
                     }
                 }
@@ -125,7 +137,7 @@ struct SingleMatchesView:  View{
             Text("Match \(match.matchnumber)")
                 .font(.system(size: 35))
                 .bold()
-                .padding()
+                
             
             if match.commited == false{
                 
