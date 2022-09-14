@@ -227,11 +227,23 @@ struct SingleMatchesView:  View{
             teamsList[team1index ?? 0].wins += 1
             teamsList[team2index ?? 0].loses += 1
             
+            teamsList[team1index ?? 0].pointsFor += match.scoreteam1
+            teamsList[team2index ?? 0].pointsFor += match.scoreteam2
+            
+            teamsList[team1index ?? 0].pointsAgainst += match.scoreteam2
+            teamsList[team2index ?? 0].pointsAgainst += match.scoreteam1
+            
             match.commited = true
             
         }else{
             teamsList[team2index ?? 0].wins += 1
             teamsList[team1index ?? 0].loses += 1
+            
+            teamsList[team1index ?? 0].pointsFor += match.scoreteam1
+            teamsList[team2index ?? 0].pointsFor += match.scoreteam2
+            
+            teamsList[team1index ?? 0].pointsAgainst += match.scoreteam2
+            teamsList[team2index ?? 0].pointsAgainst += match.scoreteam1
             
             match.commited = true
         }
@@ -247,11 +259,24 @@ struct SingleMatchesView:  View{
             teamsList[team1index ?? 0].wins -= 1
             teamsList[team2index ?? 0].loses -= 1
             
+            teamsList[team1index ?? 0].pointsFor -= match.scoreteam1
+            teamsList[team2index ?? 0].pointsFor -= match.scoreteam2
+            
+            teamsList[team1index ?? 0].pointsAgainst -= match.scoreteam2
+            teamsList[team2index ?? 0].pointsAgainst -= match.scoreteam1
+            
             match.commited = false
             
         }else{
             teamsList[team2index ?? 0].wins -= 1
             teamsList[team1index ?? 0].loses -= 1
+            
+            teamsList[team1index ?? 0].pointsFor -= match.scoreteam1
+            teamsList[team2index ?? 0].pointsFor -= match.scoreteam2
+            
+            teamsList[team1index ?? 0].pointsAgainst -= match.scoreteam2
+            teamsList[team2index ?? 0].pointsAgainst -= match.scoreteam1
+            
             match.commited = false
         }
     }

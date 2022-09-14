@@ -14,6 +14,8 @@ struct Team: Identifiable{
     var members: [Player]
     var wins: Int
     var loses: Int
+    var pointsFor: Int
+    var pointsAgainst: Int
     
     
     

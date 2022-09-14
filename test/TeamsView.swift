@@ -155,7 +155,7 @@ public struct TeamsView: View {
                 
                 Button{
                     randomTeams()
-                    
+                    resetStats()
                 }label: {
                     Label("Random Teams", systemImage: "dice")
                 }
@@ -324,18 +324,18 @@ public struct TeamsView: View {
         if teamColors.isEmpty {
             if removedTeamColors.isEmpty{
                 let randomNumber = Int.random(in: 0..<100)
-                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", members: [], wins: 0, loses: 0)
+                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
                 self.teamsList.append(newTeam)
             }else{
                 let randomNumber = Int.random(in: 0..<removedTeamColors.count)
-                let newTeam = Team(id: UUID(), teamname: "\(removedTeamColors[randomNumber])", members: [], wins: 0, loses: 0)
+                let newTeam = Team(id: UUID(), teamname: "\(removedTeamColors[randomNumber])", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
                 self.teamsList.append(newTeam)
                 self.removedTeamColors.remove(at: randomNumber)
             }
         }else {
             
             let randomNumber = Int.random(in: 0..<teamColors.count)
-            let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [], wins: 0, loses: 0)
+            let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
             self.teamsList.append(newTeam)
             self.teamColors.remove(at: randomNumber)
             
@@ -469,6 +469,14 @@ public struct TeamsView: View {
             teamsList[i].members.removeAll()
         }
         
+    }
+    func resetStats(){
+        for i in 0..<teamsList.count{
+            teamsList[i].wins = 0
+            teamsList[i].loses = 0
+            teamsList[i].pointsFor = 0
+            teamsList[i].pointsAgainst = 0
+        }
     }
 
 }
