@@ -14,6 +14,9 @@ import SwiftUI
 
 public struct TeamsView: View {
     
+    
+    
+    
     @Binding var selectedTab: Int
     @Binding var confirmTeamsCounter: Int
     @Binding var playersList: [Player]
@@ -91,6 +94,9 @@ public struct TeamsView: View {
             self.instructions
             self.form
         }
+        
+        
+        
     }
     
     ////////////////////////////////////////////

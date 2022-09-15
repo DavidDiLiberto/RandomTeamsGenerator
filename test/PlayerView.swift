@@ -52,7 +52,7 @@ public struct PlayersView: View {
         
         .onAppear(perform: self.swizzle)
         .onDisappear(perform: self.swizzle)
-        
+        .onAppear(perform: self.addNewTeam)
     }
     
     
