@@ -11,6 +11,7 @@ import Foundation
 struct KOMatch: Identifiable{
     
     var id: UUID
+    var matchname: String
     var matchnumber: Int
     var team1: Team
     var team2: Team

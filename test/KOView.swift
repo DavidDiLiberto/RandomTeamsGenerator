@@ -69,7 +69,8 @@ struct KOView: View {
                         
                         if komatches[i].commited == true{
                             HStack(alignment: .center){
-                                Text("\(komatches[i].matchnumber):")
+                                Text("\(komatches[i].matchnumber).")
+                                Text("\(komatches[i].matchname):")
                                 Text("\(komatches[i].team1.teamname)")
                                 Spacer()
                                 Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
@@ -78,7 +79,8 @@ struct KOView: View {
                             }
                         }else{
                             HStack(alignment: .center){
-                                Text("\(komatches[i].matchnumber):")
+                                Text("\(komatches[i].matchnumber).")
+                                Text("\(komatches[i].matchname):")
                                 Text("\(komatches[i].team1.teamname)")
                                 Spacer()
                                 Text("vs.")
