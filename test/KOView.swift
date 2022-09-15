@@ -36,24 +36,33 @@ struct KOView: View {
             .background(RoundedRectangle(cornerRadius: .infinity))
             .cornerRadius(.infinity)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .border(Color.blue)
+            
         }
     }
     
-    var body: some View {
+    public var body: some View {
+        VStack {
+            self.title
+            self.form
+        }
+    }
+    
+    var title: some View {
+        
         VStack{
-            Text("KO Runde")
-            Button{
-                createKOMatchplan()
-            }label: {
-                Label("KO Runde erstellen", systemImage: "")
-            }
-            .buttonStyle(RoundedRectangleButtonStyle())
-            .frame(width: 250, height: 55, alignment: .center)
-            .padding()
-            
+        Text("KO Runde").font(.system(size: 35)).bold()
+        
+       
+    }
+    
+    }
+    var form: some View {
+       
+        NavigationView{
             
             if komatches.count>0{
+                
+                
                 
                 List(0..<komatches.count, id: \.self) { i in
                     NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
@@ -90,30 +99,9 @@ struct KOView: View {
         
     }
     
-    func createKOMatchplan(){
-        
-        let sortedList = teamsList.sorted{
-            if $0.wins != $1.wins{
-                return $0.wins > $1.wins
-            }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
-                return $0.pointsFor > $1.pointsFor
-            }else{
-                return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
-            }
-            
-        }
-        
-        
-        if teamsList.count < 4{
-            
-            let newKOMatch = KOMatch(id: UUID(), matchnumber: 1, team1: sortedList[0], team2: sortedList[1], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0], commited: false)
-            self.komatches.append(newKOMatch)
-            
-        }
-        
-    }
+   
     
-}
+
 
 
 struct SingleKOMatchesView:  View{
@@ -138,4 +126,5 @@ struct SingleKOMatchesView:  View{
     }
     
     
+}
 }

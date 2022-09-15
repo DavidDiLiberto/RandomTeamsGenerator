@@ -33,6 +33,7 @@ struct ContentView: View {
     @State var komatches: [KOMatch] = []
     @State var teamColors: [String] = ["🔴", "🔵", "🟢", "🟡", "💖", "🟤", "⚫️", "⚪️", "🟠", "🟣"]
     @State var removedTeamColors: [String] = []
+    @State var commitedResults: Bool = false
     
     var body: some View {
         
@@ -53,7 +54,7 @@ struct ContentView: View {
                     Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
                 }
                 .tag(2)
-            ResultsView(playersList: $playersList, teamsList: $teamsList, matches: $matches)
+            ResultsView(playersList: $playersList, teamsList: $teamsList, matches: $matches, komatches: $komatches,selectedTab: $selectedTab, commitedResults: $commitedResults)
                 .tabItem    {
                     Label("Results", systemImage: "table")
                 }

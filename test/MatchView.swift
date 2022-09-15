@@ -23,6 +23,8 @@ public struct MatchView: View {
     @Binding var selectedScore: Int
     let scores = [0,1,2,3,4,5,6]
     
+    
+    
     struct RoundedRectangleButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             HStack {
@@ -52,6 +54,8 @@ public struct MatchView: View {
     }
     
     var form: some View {
+        
+       
         
         NavigationView{
             
@@ -83,8 +87,12 @@ public struct MatchView: View {
                     }
                 }
             }
+           
         }
+          
+        
     }
+ 
 }
 
 
@@ -280,6 +288,8 @@ struct SingleMatchesView:  View{
             match.commited = false
         }
     }
+    
+    
 }
 
 
