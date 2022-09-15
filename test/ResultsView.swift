@@ -165,8 +165,6 @@ struct ResultsView: View {
                 let newKOMatch = KOMatch(id: UUID(), matchname: "Halbfinale:    ", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[3-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
                 self.komatches.append(newKOMatch)
             }
-            let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:            ", matchnumber: 1, team1: komatches[0].winner, team2: komatches[1].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0].winner, commited: false)
-            self.komatches.append(newKOMatch)
             
         }
         else if teamsList.count < 16{
@@ -174,12 +172,7 @@ struct ResultsView: View {
                 let newKOMatch = KOMatch(id: UUID(), matchname: "Viertelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[7-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
                 self.komatches.append(newKOMatch)
             }
-            for i in 0..<2{
-                let newKOMatch = KOMatch(id: UUID(), matchname: "Halbfinale:    ", matchnumber: i+1, team1: komatches[0+i].winner, team2: komatches[3-i].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0+i].winner, commited: false)
-                self.komatches.append(newKOMatch)
-            }
-            let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:            ", matchnumber: 1, team1: komatches[4].winner, team2: komatches[5].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[4].winner, commited: false)
-            self.komatches.append(newKOMatch)
+          
             
         }
         

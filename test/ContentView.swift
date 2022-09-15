@@ -34,6 +34,8 @@ struct ContentView: View {
     @State var teamColors: [String] = ["🔴", "🔵", "🟢", "🟡", "💖", "🟤", "⚫️", "⚪️", "🟠", "🟣"]
     @State var removedTeamColors: [String] = []
     @State var commitedResults: Bool = false
+    @State var inSingleView: Bool = false
+    @State var winner: [Team] = []
     
     var body: some View {
         
@@ -59,7 +61,7 @@ struct ContentView: View {
                     Label("Results", systemImage: "table")
                 }
                 .tag(3)
-            KOView(playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter)
+            KOView(playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner)
                 .tabItem    {
                     Label("KO Runde", systemImage: "trophy.fill")
                 }
