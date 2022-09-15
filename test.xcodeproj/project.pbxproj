@@ -18,6 +18,7 @@
 		639D4CE7287CE37000272A76 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D4CE6287CE37000272A76 /* ResultsView.swift */; };
 		639D4CE9287CE38C00272A76 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D4CE8287CE38C00272A76 /* TeamModel.swift */; };
 		639D4CEB287CE3A000272A76 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D4CEA287CE3A000272A76 /* TeamsView.swift */; };
+		63EB085028D318CB0042A5B4 /* KOMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB084F28D318CB0042A5B4 /* KOMatchModel.swift */; };
 		63F6BE7E28A53E86003D0740 /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F6BE7D28A53E86003D0740 /* MatchModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		639D4CE6287CE37000272A76 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		639D4CE8287CE38C00272A76 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		639D4CEA287CE3A000272A76 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
+		63EB084F28D318CB0042A5B4 /* KOMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KOMatchModel.swift; sourceTree = "<group>"; };
 		63F6BE7D28A53E86003D0740 /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				639D4CD2287CE24500272A76 /* ContentView.swift */,
 				639D4CDE287CE2DF00272A76 /* MatchView.swift */,
 				63F6BE7D28A53E86003D0740 /* MatchModel.swift */,
+				63EB084F28D318CB0042A5B4 /* KOMatchModel.swift */,
 				639D4CE0287CE30A00272A76 /* KOView.swift */,
 				639D4CE2287CE32100272A76 /* PlayerModel.swift */,
 				639D4CE4287CE33C00272A76 /* PlayerView.swift */,
@@ -163,6 +166,7 @@
 			files = (
 				639D4CEB287CE3A000272A76 /* TeamsView.swift in Sources */,
 				63F6BE7E28A53E86003D0740 /* MatchModel.swift in Sources */,
+				63EB085028D318CB0042A5B4 /* KOMatchModel.swift in Sources */,
 				639D4CE3287CE32100272A76 /* PlayerModel.swift in Sources */,
 				639D4CD3287CE24500272A76 /* ContentView.swift in Sources */,
 				639D4CE9287CE38C00272A76 /* TeamModel.swift in Sources */,
