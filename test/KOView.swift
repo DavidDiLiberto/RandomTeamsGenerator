@@ -56,6 +56,20 @@ struct KOView: View {
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
         }
     }
+    struct RoundedRectangleButtonStyleRed: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.red)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
     
     
     public var body: some View {
@@ -121,7 +135,7 @@ struct KOView: View {
                     
                     
                 }
-                if komatches.count == 1 && inSingleView == false{
+                    if komatches.count == 1 && inSingleView == false  && komatches[0].commited == true{
                     Button{
                         showWinner()
                     }label: {
@@ -131,7 +145,7 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                 }
-                else if komatches.count == 2 && inSingleView == false{
+                else if komatches.count == 2 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true{
                     Button{
                         finaleMitHalb()
                     }label: {
@@ -141,7 +155,16 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                     
-                }else if komatches.count == 3 && inSingleView == false{
+                }else if komatches.count == 3 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == false{
+                        Button{
+                            goBack()
+                        }label: {
+                            Label("Letzte Runde bearbeiten", systemImage: "")
+                        }
+                        .buttonStyle(RoundedRectangleButtonStyleRed())
+                        .frame(width: 250, height: 55, alignment: .center)
+                        .padding()
+                    }else if komatches.count == 3 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true{
                     Button{
                         showWinner()
                     }label: {
@@ -151,7 +174,7 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                 }
-                else if komatches.count == 4 && inSingleView == false{
+                else if komatches.count == 4 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true{
                     Button{
                         halbfinaleMitViertel()
                     }label: {
@@ -160,8 +183,18 @@ struct KOView: View {
                     .buttonStyle(RoundedRectangleButtonStyleGreen())
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
+                }else if komatches.count == 6 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == false && komatches[5].commited == false{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("Letzte Runde bearbeiten", systemImage: "")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                    
                 }
-                else if komatches.count == 6 && inSingleView == false{
+                else if komatches.count == 6 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true{
                     Button{
                         finaleMitVietel()
                     }label: {
@@ -171,8 +204,18 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                     
+                }else if komatches.count == 7 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true && komatches[6].commited == false{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("Letzte Runde bearbeiten", systemImage: "")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                    
                 }
-                else if komatches.count == 7 && inSingleView == false{
+                else if komatches.count == 7 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true && komatches[6].commited == true{
                     Button{
                         showWinner()
                     }label: {
@@ -221,6 +264,17 @@ struct KOView: View {
         }
         else if komatches.count == 7{
             winner.append(komatches[6].winner)
+        }
+        
+    }
+    func goBack(){
+        if komatches.count == 3{
+            komatches.removeLast()
+        }else if komatches.count == 6{
+            komatches.removeLast()
+            komatches.removeLast()
+        }else if komatches.count == 7 {
+            komatches.removeLast()
         }
         
     }
