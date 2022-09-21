@@ -19,6 +19,7 @@ struct ResultsView: View {
     @Binding var komatches: [KOMatch]
     @Binding var selectedTab: Int
     @Binding var commitedResults: Bool
+    @Binding var winner: [Team]
     
     struct RoundedRectangleButtonStyleGreen: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -126,6 +127,7 @@ struct ResultsView: View {
             }else{
                 Button{
                     komatches.removeAll()
+                    winner.removeAll()
                     commitedResults = false
                 }label: {
                     Label("bearbeiten", systemImage: "")

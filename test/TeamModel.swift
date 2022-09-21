@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Team: Identifiable{
     
     var id: UUID
     var teamname: String
+    var color: Color
     var members: [Player]
     var wins: Int
     var loses: Int

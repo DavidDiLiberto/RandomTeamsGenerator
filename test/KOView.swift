@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import ConfettiSwiftUI
 
 
 
@@ -15,7 +15,7 @@ import SwiftUI
 
 struct KOView: View {
     
-    
+    @Binding var confettiCounter: Int
     @Binding var playersList: [Player]
     @Binding var teamsList: [Team]
     @Binding var selectedScore: Int
@@ -82,19 +82,23 @@ struct KOView: View {
     var title: some View {
         
         VStack{
-            Text("KO Runde").font(.system(size: 35)).bold()
             
+            if winner.isEmpty{
+                Text("KO Runde").font(.system(size: 35)).bold()
+            }else{
+                Text("Winner").font(.system(size: 35)).bold()
+            }
             
         }
         
     }
     var form: some View {
         
-      
+        
+        
+        VStack{
             
-            VStack{
-                
-                if winner.isEmpty{
+            if winner.isEmpty{
                 
                 NavigationView{
                     
@@ -135,7 +139,7 @@ struct KOView: View {
                     
                     
                 }
-                    if komatches.count == 1 && inSingleView == false  && komatches[0].commited == true{
+                if komatches.count == 1 && inSingleView == false  && komatches[0].commited == true{
                     Button{
                         showWinner()
                     }label: {
@@ -149,22 +153,22 @@ struct KOView: View {
                     Button{
                         finaleMitHalb()
                     }label: {
-                        Label("Halbfinale abschließen", systemImage: "")
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleGreen())
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                     
                 }else if komatches.count == 3 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == false{
-                        Button{
-                            goBack()
-                        }label: {
-                            Label("Letzte Runde bearbeiten", systemImage: "")
-                        }
-                        .buttonStyle(RoundedRectangleButtonStyleRed())
-                        .frame(width: 250, height: 55, alignment: .center)
-                        .padding()
-                    }else if komatches.count == 3 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("zurück", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }else if komatches.count == 3 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true{
                     Button{
                         showWinner()
                     }label: {
@@ -178,7 +182,7 @@ struct KOView: View {
                     Button{
                         halbfinaleMitViertel()
                     }label: {
-                        Label("Viertelfinale abschließen", systemImage: "")
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleGreen())
                     .frame(width: 250, height: 55, alignment: .center)
@@ -187,7 +191,7 @@ struct KOView: View {
                     Button{
                         goBack()
                     }label: {
-                        Label("Letzte Runde bearbeiten", systemImage: "")
+                        Label("zurück", systemImage: "pencil")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleRed())
                     .frame(width: 250, height: 55, alignment: .center)
@@ -198,7 +202,7 @@ struct KOView: View {
                     Button{
                         finaleMitVietel()
                     }label: {
-                        Label("Halbfinale abschließen", systemImage: "")
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleGreen())
                     .frame(width: 250, height: 55, alignment: .center)
@@ -208,7 +212,7 @@ struct KOView: View {
                     Button{
                         goBack()
                     }label: {
-                        Label("Letzte Runde bearbeiten", systemImage: "")
+                        Label("zurück", systemImage: "pencil")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleRed())
                     .frame(width: 250, height: 55, alignment: .center)
@@ -227,9 +231,20 @@ struct KOView: View {
                 }
                 
             }
-                else{
-                    Text("\(winner[0].teamname) hat gewonnen !!!")
-        }
+            else{
+                
+                
+                VStack{
+                    Spacer()
+                    
+                    Image(systemName: "trophy.fill").font(.system(size: 350)).foregroundColor(winner[0].color).onTapGesture {
+                        confettiCounter += 1
+                    }.confettiCannon(counter: $confettiCounter, num: 50, colors: [winner[0].color], rainHeight: 1000.0, radius: 500.0, repetitions: 15, repetitionInterval: 0.5)
+                    Text("\(winner[0].teamname)").font(.system(size: 35)).bold()
+                    
+                    Spacer()
+                }
+            }
             
         }
         
@@ -393,7 +408,7 @@ struct KOView: View {
                         self.presentationMode.wrappedValue.dismiss()
                         inSingleView = false
                     }label: {
-                        Label("Ergebnis bestätigen", systemImage: "")
+                        Label("Bestätigen", systemImage: "checkmark.circle.fill")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleGreen())
                     .frame(width: 250, height: 55, alignment: .center)
@@ -413,7 +428,7 @@ struct KOView: View {
                         editKOMatch()
                         
                     }label: {
-                        Label("Ergebnis bearbeiten", systemImage: "")
+                        Label("bearbeiten", systemImage: "pencil")
                     }
                     .buttonStyle(RoundedRectangleButtonStyleRed())
                     .frame(width: 250, height: 55, alignment: .center)

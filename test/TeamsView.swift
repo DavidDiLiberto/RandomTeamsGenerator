@@ -22,8 +22,10 @@ public struct TeamsView: View {
     @Binding var playersList: [Player]
     @Binding var removedPlayersList: [Player]
     @Binding var teamsList: [Team]
-    @Binding var teamColors: [String]
-    @Binding var removedTeamColors: [String]
+    @Binding var teamNames: [String]
+    @Binding var removedTeamNames: [String]
+    @Binding var teamColors: [Color]
+    @Binding var removedTeamColors: [Color]
     @Binding var matches: [Match]
     @Binding var counter: Int
     @Binding var matchcounter: Int
@@ -128,9 +130,11 @@ public struct TeamsView: View {
                     removeAllMembers()
                     confirmTeamsCounter = 0
                 } onDecrement: {
-                    deleteTeam()
-                    removeAllMembers()
-                    confirmTeamsCounter = 0
+                    if teamsList.count > 1{
+                        deleteTeam()
+                        removeAllMembers()
+                        confirmTeamsCounter = 0
+                    }
                 }
                 .padding(.horizontal, 50)
                 .padding(.vertical, 20)
@@ -174,7 +178,7 @@ public struct TeamsView: View {
                     createMatchplan()
                     selectedTab = 2
                          }label: {
-                             Label("Teams bestätigen", systemImage: "")
+                             Label("Bestätigen", systemImage: "checkmark.circle.fill")
                          }
                          .buttonStyle(RoundedRectangleButtonStyleGreen())
                          .frame(width: 200, height: 55, alignment: .center)
@@ -328,22 +332,24 @@ public struct TeamsView: View {
     
     func addNewTeam(){
         
-        if teamColors.isEmpty {
-            if removedTeamColors.isEmpty{
+        if teamNames.isEmpty {
+            if removedTeamNames.isEmpty{
                 let randomNumber = Int.random(in: 0..<100)
-                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", color: Color("test"), members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
                 self.teamsList.append(newTeam)
             }else{
-                let randomNumber = Int.random(in: 0..<removedTeamColors.count)
-                let newTeam = Team(id: UUID(), teamname: "\(removedTeamColors[randomNumber])", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+                let randomNumber = Int.random(in: 0..<removedTeamNames.count)
+                let newTeam = Team(id: UUID(), teamname: "\(removedTeamNames[randomNumber])", color: removedTeamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
                 self.teamsList.append(newTeam)
+                self.removedTeamNames.remove(at: randomNumber)
                 self.removedTeamColors.remove(at: randomNumber)
             }
         }else {
             
-            let randomNumber = Int.random(in: 0..<teamColors.count)
-            let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+            let randomNumber = Int.random(in: 0..<teamNames.count)
+            let newTeam = Team(id: UUID(), teamname: "Team \(teamNames[randomNumber])", color: teamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
             self.teamsList.append(newTeam)
+            self.teamNames.remove(at: randomNumber)
             self.teamColors.remove(at: randomNumber)
             
         }
@@ -353,7 +359,10 @@ public struct TeamsView: View {
     func deleteTeam(){
         let lastTeam = teamsList.last
         if teamsList.count < 11{
-            self.removedTeamColors.append(String(lastTeam!.teamname))
+            
+            self.removedTeamColors.append(lastTeam!.color)
+            self.removedTeamNames.append(String(lastTeam!.teamname))
+            
             self.teamsList.removeLast(1)
         } else{
             self.teamsList.removeLast(1)

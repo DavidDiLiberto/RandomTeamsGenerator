@@ -22,23 +22,41 @@ public struct PlayersView: View {
     @FocusState private var focusedPlayer: UUID?
     @Binding var selectedTab: Int
     @Binding var teamsList: [Team]
-    @Binding var teamColors: [String]
+    @Binding var teamNames: [String]
+    @Binding var teamColors: [Color]
+    @Binding var playersCommited: Bool
+    @Binding var removedPlayersList: [Player]
     
     
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
-      func makeBody(configuration: Configuration) -> some View {
-        HStack {
-          Spacer()
-          configuration.label.foregroundColor(.white)
-          Spacer()
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.blue)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
         }
-        .padding()
-        .background(Color.blue)
-        .background(RoundedRectangle(cornerRadius: .infinity))
-        .cornerRadius(.infinity)
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
-      }
+    }
+    
+    struct RoundedRectangleButtonStyleRed: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.red)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
     }
     
     ////////////////////////////////////////////
@@ -75,18 +93,36 @@ public struct PlayersView: View {
                 .font(.system(size: 18))
                 .padding()
             
-            Button("Bestätigen"){
-                playersList = playersList.filter(filterArray)
-                hideKeyboard()
-                self.addNewTeam()
-                self.addNewTeam()
-                selectedTab = 1
+            if playersCommited == false{
                 
+                Button("Bestätigen"){
+                    hideKeyboard()
+                    playersList = playersList.filter(filterArray)
+                    self.addNewTeam()
+                    self.addNewTeam()
+                    selectedTab = 1
+                    playersCommited = true
+                    
+                }
+                .buttonStyle(RoundedRectangleButtonStyle())
+                .frame(width: 170, height: 55, alignment: .center)
+            }else{
+                Button{
+                    
+                    if removedPlayersList.count > 0{
+                        for i in 0...removedPlayersList.count - 1{
+                            playersList.append(removedPlayersList[i])
+                        }
+                        removedPlayersList.removeAll()
+                    }
+                    playersCommited = false
+                }label: {
+                    Label("bearbeiten", systemImage: "pencil")
+                }
+                .buttonStyle(RoundedRectangleButtonStyleRed())
+                .frame(width: 170, height: 55, alignment: .center)
                 
             }
-                .buttonStyle(RoundedRectangleButtonStyle())
-                .frame(width: 150, height: 55, alignment: .center)
-            
         }
     }
     
@@ -94,21 +130,24 @@ public struct PlayersView: View {
     ////////////////////////////////////////////
     // Form View
     var form: some View {
-        Form {
-            ForEach($playersList) { player in
-                TextField(
-                    "Spielername",
-                    text: player.name,
-                    onCommit: {
-                        
-                        if !player.wrappedValue.name.isEmpty{
-                            self.addNewPlayer(after: player.wrappedValue)
+        
+        
+            Form {
+                if playersCommited == false{
+                ForEach($playersList) { player in
+                    TextField(
+                        "Spielername",
+                        text: player.name,
+                        onCommit: {
+                            
+                            if !player.wrappedValue.name.isEmpty{
+                                self.addNewPlayer(after: player.wrappedValue)
+                            }
+                            
+                            
+                            
                         }
-                        
-                        
-                        
-                    }
-                )
+                    )
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.words/*@END_MENU_TOKEN@*/)
                     .focused($focusedPlayer, equals: player.id)
@@ -116,6 +155,7 @@ public struct PlayersView: View {
                         self.deleteDetected(for: deleteInput)
                         
                     })
+                }
             }
         }
     }
@@ -176,17 +216,18 @@ public struct PlayersView: View {
     
     ///Methode to filter Array
     func filterArray(player: Player) -> Bool{
-         return !player.name.isEmpty
+        return !player.name.isEmpty
     }
     
     func addNewTeam(){
         
-        let randomNumber = Int.random(in: 0..<teamColors.count)
-        let newTeam = Team(id: UUID(), teamname: "Team \(teamColors[randomNumber])", members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+        let randomNumber = Int.random(in: 0..<teamNames.count)
+        let newTeam = Team(id: UUID(), teamname: "Team \(teamNames[randomNumber])", color: teamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
         self.teamsList.append(newTeam)
+        self.teamNames.remove(at: randomNumber)
         self.teamColors.remove(at: randomNumber)
-   
-}
+        
+    }
 }
 
 

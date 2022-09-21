@@ -198,7 +198,7 @@ struct SingleMatchesView:  View{
                     declareWinner()
                     self.presentationMode.wrappedValue.dismiss()
                 }label: {
-                    Label("Ergebnis bestätigen", systemImage: "")
+                    Label("Bestätigen", systemImage: "checkmark.circle.fill")
                 }
                 .buttonStyle(RoundedRectangleButtonStyleGreen())
                 .frame(width: 250, height: 55, alignment: .center)
@@ -218,7 +218,7 @@ struct SingleMatchesView:  View{
                     removeWandL()
                     
                 }label: {
-                    Label("Ergebnis bearbeiten", systemImage: "")
+                    Label("bearbeiten", systemImage: "pencil")
                 }
                 .buttonStyle(RoundedRectangleButtonStyleRed())
                 .frame(width: 250, height: 55, alignment: .center)
