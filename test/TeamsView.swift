@@ -145,7 +145,9 @@ public struct TeamsView: View {
                 
             }
             if teamsList.count > numberOfPlayers{
-                Text("Mehr Teams als Spieler").foregroundColor(.red)
+                Text("Mehr Teams als Spieler")
+                    .foregroundColor(.red)
+                    .font(.system(size: 30))
             }else{
                 Text("\(Int(roundedPlayersPerTeam)) Spieler pro Team")
                 if rest > 0 {
