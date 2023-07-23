@@ -141,17 +141,22 @@ public struct TeamsView: View {
                 .font(.system(size: 25))
                 
                 
-                
-                
-            }
-            Text("\(Int(roundedPlayersPerTeam)) Spieler pro Team")
-            if rest > 0 {
-                Text("(\(rest) Teams mit \(Int(biggerTeamSize)) Spielern) ")
-                    .font(.system(size: 18))
-                
-                
+
                 
             }
+            if teamsList.count > numberOfPlayers{
+                Text("Mehr Teams als Spieler").foregroundColor(.red)
+            }else{
+                Text("\(Int(roundedPlayersPerTeam)) Spieler pro Team")
+                if rest > 0 {
+                    Text("(\(rest) Teams mit \(Int(biggerTeamSize)) Spielern) ")
+                        .font(.system(size: 18))
+                    
+                    
+                    
+                }
+            }
+           
             if confirmTeamsCounter == 0{
             Button{
                 randomTeams()
