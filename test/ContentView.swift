@@ -44,7 +44,7 @@ struct ContentView: View {
         
         TabView(selection: $selectedTab){
             
-            PlayersView(playersList: $playersList, selectedTab: $selectedTab, teamsList: $teamsList, teamNames: $teamNames, teamColors: $teamColors, playersCommited: $playersCommited, removedPlayersList: $removedPlayersList)
+            PlayersView(playersList: $playersList, selectedTab: $selectedTab, teamsList: $teamsList, teamNames: $teamNames, teamColors: $teamColors, playersCommited: $playersCommited, removedPlayersList: $removedPlayersList, removedTeamNames: $removedTeamNames, removedTeamColors: $removedTeamColors)
                 .tabItem    {
                     Label("Players", systemImage: "person")
                 }
