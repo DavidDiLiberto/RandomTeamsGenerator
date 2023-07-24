@@ -149,51 +149,74 @@ struct SingleMatchesView:  View{
             
             if match.commited == false{
                 
-                HStack(){
+                VStack{
                     
-                    VStack{
-                        Text("\(match.team1.teamname)").bold().padding(.horizontal, 40)
-                        
-                    }
-                    VStack{
-                        Picker("Score", selection: $match.scoreteam1) {
-                            ForEach(scores, id: \.self) {i in
-                                Text("\(scores[i])").bold().scaleEffect(x: 5)
-                            }
-                        }.scaleEffect(x: 0.2)
-                    }
-                    .pickerStyle(.wheel)
-                    .frame(width: 20)
-                    .clipped()
-                    Text(":").bold()
+                    HStack{
+                        Spacer()
+                        VStack{
+                            Picker("Score", selection: $match.scoreteam1) {
+                                ForEach(scores, id: \.self) {i in
+                                    Text("\(scores[i])")
+                                        .font(.system(size: 35))
+                                        .bold()
+                                        
+                                }
+                            }.frame(width: 100, height: 200)
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 50)
+                        .clipped()
+                    Spacer()
+                    Text(":")
+                            .font(.system(size: 35))
+                            .bold()
+                    Spacer()
                     VStack{
                         Picker("Score", selection: $match.scoreteam2) {
                             ForEach(scores, id: \.self) {i in
-                                Text("\(scores[i])").bold().scaleEffect(x: 5)
+                                Text("\(scores[i])").font(.system(size: 35)).bold()
                             }
-                        }.scaleEffect(x: 0.2)
+                        }.frame(width: 100, height: 200)
                     }
                     .pickerStyle(.wheel)
-                    .frame(width: 20)
+                    .frame(width: 50)
                     .clipped()
-                    VStack{
-                        Text("\(match.team2.teamname)").bold().padding(.horizontal, 40)
-                        
-                    }
-                }
-                HStack(alignment: .top){
-                    VStack{
-                        ForEach(0..<match.team1.members.count){i in
-                            Text("\(match.team1.members[i].name)")
-                        }
-                    }.padding(.leading, 69)
                     Spacer()
+                    }
+                    
+                    HStack(alignment: .top){
+                        Spacer().frame(width: 60)
+                        VStack(alignment: .center){
+                            Text("\(match.team1.teamname)").bold().font(.system(size: 30))
+                            VStack{
+                                ForEach(0..<match.team1.members.count){i in
+                                    Text("\(match.team1.members[i].name)").font(.system(size: 25))
+                                }
+                            }
+                            
+                        }.multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        
                     VStack{
-                        ForEach(0..<match.team2.members.count){i in
-                            Text("\(match.team2.members[i].name)")
+                        Text("\(match.team2.teamname)").bold().font(.system(size: 30))
+                        VStack{
+                            ForEach(0..<match.team2.members.count){i in
+                                Text("\(match.team2.members[i].name)").font(.system(size: 25))
+                            }
                         }
-                    }.padding(.trailing, 69)
+                    }.multilineTextAlignment(.center)
+                        Spacer().frame(width: 40)
+
                 }
+
+                    
+                    
+                }
+                
+                
+                        
+
                 Button{
                     declareWinner()
                     self.presentationMode.wrappedValue.dismiss()

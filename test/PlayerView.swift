@@ -105,13 +105,16 @@ public struct PlayersView: View {
             if playersCommited == false{
                 
                 Button("Bestätigen"){
-                    hideKeyboard()
-                    playersList = playersList.filter(filterArray)
-                    self.addNewTeam()
-                    self.addNewTeam()
-                    selectedTab = 1
-                    playersCommited = true
-                    
+                    if playersList[0].name == "" && playersList.count == 1{
+                        
+                    }else{
+                        hideKeyboard()
+                        playersList = playersList.filter(filterArray)
+                        self.addNewTeam()
+                        self.addNewTeam()
+                        selectedTab = 1
+                        playersCommited = true
+                    }
                 }
                 .buttonStyle(RoundedRectangleButtonStyle())
                 .frame(width: 170, height: 55, alignment: .center)
