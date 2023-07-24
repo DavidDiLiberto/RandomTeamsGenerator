@@ -185,9 +185,12 @@ struct SingleMatchesView:  View{
                     }
                     
                     HStack(alignment: .top){
-                        Spacer().frame(width: 60)
+                        
                         VStack(alignment: .center){
-                            Text("\(match.team1.teamname)").bold().font(.system(size: 30))
+                            
+                            
+                                Text("\(match.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
+                            
                             VStack{
                                 ForEach(0..<match.team1.members.count){i in
                                     Text("\(match.team1.members[i].name)").font(.system(size: 25))
@@ -198,16 +201,17 @@ struct SingleMatchesView:  View{
                         
                         Spacer()
                         
-                    VStack{
-                        Text("\(match.team2.teamname)").bold().font(.system(size: 30))
+                    VStack(alignment: .center){
+                        
+                            Text("\(match.team2.teamname)").bold().font(.system(size: 30)).frame(width: 200)
+                            
                         VStack{
                             ForEach(0..<match.team2.members.count){i in
                                 Text("\(match.team2.members[i].name)").font(.system(size: 25))
                             }
                         }
                     }.multilineTextAlignment(.center)
-                        Spacer().frame(width: 40)
-
+                      
                 }
 
                     
