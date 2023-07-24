@@ -21,6 +21,9 @@ public struct MatchView: View {
     @Binding var counter: Int
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
+    @Binding var komatches: [KOMatch]
+    @Binding var selectedTab: Int
+    @Binding var commitedResults: Bool
     let scores = [0,1,2,3,4,5,6]
     
     
@@ -40,6 +43,23 @@ public struct MatchView: View {
             .border(Color.blue)
         }
     }
+    
+    struct RoundedRectangleButtonStyleRed: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.red)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+            
+        }
+    }
+    
     public var body: some View {
         VStack {
             self.title
@@ -61,35 +81,95 @@ public struct MatchView: View {
             
             if matches.count>0{
                 
-                List(0..<matches.count, id: \.self) { matchindex in
-                    NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore)){
-                        
-                        
-                        if matches[matchindex].commited == true{
-                            HStack(alignment: .center){
-                                Text("\(matches[matchindex].matchnumber):")
-                                Text("\(matches[matchindex].team1.teamname)")
-                                Spacer()
-                                Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
-                                Spacer()
-                                Text("\(matches[matchindex].team2.teamname)")
-                            }
-                        }else{
-                            HStack(alignment: .center){
-                                Text("\(matches[matchindex].matchnumber):")
-                                Text("\(matches[matchindex].team1.teamname)")
-                                Spacer()
-                                Text("vs.")
-                                Spacer()
-                                Text("\(matches[matchindex].team2.teamname)")
+                VStack{
+                    
+                    List(0..<matches.count, id: \.self) { matchindex in
+                        NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches)){
+                            
+                            
+                            if matches[matchindex].commited == true{
+                                HStack(alignment: .center){
+                                    Text("\(matches[matchindex].matchnumber):")
+                                    Text("\(matches[matchindex].team1.teamname)")
+                                    Spacer()
+                                    Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
+                                    Spacer()
+                                    Text("\(matches[matchindex].team2.teamname)")
+                                }
+                            }else{
+                                HStack(alignment: .center){
+                                    Text("\(matches[matchindex].matchnumber):")
+                                    Text("\(matches[matchindex].team1.teamname)")
+                                    Spacer()
+                                    Text("vs.")
+                                    Spacer()
+                                    Text("\(matches[matchindex].team2.teamname)")
+                                }
                             }
                         }
+                    }
+                    if matches[0].commited == false{
+                        Button{
+                            createKOMatchplan()
+                            selectedTab = 4
+                            commitedResults = true
+                        }label: {
+                            Label("dirket zu KO Runde springen", systemImage: "")
+                        }
+                        .buttonStyle(RoundedRectangleButtonStyleRed())
+                        .frame(width: 300, height: 55, alignment: .center)
+                        .padding()
                     }
                 }
             }
            
         }
           
+        
+    }
+    func createKOMatchplan(){
+        
+        let sortedList = teamsList.sorted{
+            if $0.wins != $1.wins{
+                return $0.wins > $1.wins
+            }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
+                return $0.pointsFor > $1.pointsFor
+            }else{
+                return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+            }
+            
+        }
+        
+        
+        if teamsList.count < 4{
+            
+            let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:        ", matchnumber: 1, team1: sortedList[0], team2: sortedList[1], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0], commited: false)
+            self.komatches.append(newKOMatch)
+            
+        }
+        else if teamsList.count < 8{
+            for i in 0..<2{
+                let newKOMatch = KOMatch(id: UUID(), matchname: "Halbfinale:    ", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[3-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
+                self.komatches.append(newKOMatch)
+            }
+            
+        }
+        else if teamsList.count < 16{
+            for i in 0..<4{
+                let newKOMatch = KOMatch(id: UUID(), matchname: "Viertelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[7-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
+                self.komatches.append(newKOMatch)
+            }
+          
+            
+        }
+        else if teamsList.count < 32{
+            for i in 0..<8{
+                let newKOMatch = KOMatch(id: UUID(), matchname: "Achtelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[15-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
+                self.komatches.append(newKOMatch)
+            }
+          
+            
+        }
         
     }
  
@@ -106,6 +186,7 @@ struct SingleMatchesView:  View{
     @Binding var counter: Int
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
+    @Binding var komatches: [KOMatch]
     let scores = [0,1,2,3,4,5,6]
     
     
@@ -315,6 +396,8 @@ struct SingleMatchesView:  View{
             match.commited = false
         }
     }
+    
+
     
     
 }
