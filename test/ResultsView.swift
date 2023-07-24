@@ -177,6 +177,14 @@ struct ResultsView: View {
           
             
         }
+        else if teamsList.count < 32{
+            for i in 0..<8{
+                let newKOMatch = KOMatch(id: UUID(), matchname: "Achtelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[15-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
+                self.komatches.append(newKOMatch)
+            }
+          
+            
+        }
         
     }
 }

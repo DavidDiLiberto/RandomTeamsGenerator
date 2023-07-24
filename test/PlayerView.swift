@@ -111,7 +111,6 @@ public struct PlayersView: View {
                         hideKeyboard()
                         playersList = playersList.filter(filterArray)
                         self.addNewTeam()
-                        self.addNewTeam()
                         selectedTab = 1
                         playersCommited = true
                     }

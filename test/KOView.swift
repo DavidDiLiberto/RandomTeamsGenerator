@@ -229,8 +229,88 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                 }
+
+                else if komatches.count == 8 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true && komatches[6].commited == true && komatches[7].commited == true{
+                    Button{
+                        viertelfinaleMitAchtel()
+                    }label: {
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleGreen())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 12 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true && komatches[6].commited == true && komatches[7].commited == true && komatches[8].commited == false{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("zurück", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 12 && inSingleView == false && komatches.allSatisfy { $0.commited == true }{
+                    Button{
+                        halbfinaleMitAchtel()
+                    }label: {
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleGreen())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 14 && inSingleView == false && komatches[12].commited == false{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("zurück", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 14 && inSingleView == false && komatches.allSatisfy { $0.commited == true }{
+                    Button{
+                        finaleMitAchtel()
+                    }label: {
+                        Label("Weiter", systemImage: "checkmark.circle.fill")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleGreen())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 15 && inSingleView == false && komatches[14].commited == false{
+                    Button{
+                        goBack()
+                    }label: {
+                        Label("zurück", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleRed())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
+                
+                else if komatches.count == 15 && inSingleView == false && komatches.allSatisfy { $0.commited == true }{
+                    Button{
+                        showWinner()
+                    }label: {
+                        Label("Fertig", systemImage: "flag.checkered")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleGreen())
+                    .frame(width: 250, height: 55, alignment: .center)
+                    .padding()
+                }
                 
             }
+            
+            
+            
             else{
                 
                 
@@ -269,6 +349,22 @@ struct KOView: View {
         let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:            ", matchnumber: 1, team1: komatches[4].winner, team2: komatches[5].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[4].winner, commited: false)
         self.komatches.append(newKOMatch)
     }
+    func viertelfinaleMitAchtel(){
+        for i in 0..<4{
+            let newKOMatch = KOMatch(id: UUID(), matchname: "Virtelfinale:    ", matchnumber: i+1, team1: komatches[0+i].winner, team2: komatches[7-i].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0+i].winner, commited: false)
+            self.komatches.append(newKOMatch)
+        }
+    }
+    func halbfinaleMitAchtel(){
+        for i in 0..<2{
+            let newKOMatch = KOMatch(id: UUID(), matchname: "Halbfinale:    ", matchnumber: i+1, team1: komatches[8+i].winner, team2: komatches[11-i].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0+i].winner, commited: false)
+            self.komatches.append(newKOMatch)
+        }
+    }
+    func finaleMitAchtel(){
+        let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:            ", matchnumber: 1, team1: komatches[12].winner, team2: komatches[13].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[4].winner, commited: false)
+        self.komatches.append(newKOMatch)
+    }
     func showWinner(){
         if komatches.count == 1{
             winner.append(komatches[0].winner)
@@ -280,7 +376,9 @@ struct KOView: View {
         else if komatches.count == 7{
             winner.append(komatches[6].winner)
         }
-        
+        else if komatches.count == 15{
+            winner.append(komatches[14].winner)
+        }
     }
     func goBack(){
         if komatches.count == 3{
@@ -289,6 +387,16 @@ struct KOView: View {
             komatches.removeLast()
             komatches.removeLast()
         }else if komatches.count == 7 {
+            komatches.removeLast()
+        }else if komatches.count == 12 {
+            komatches.removeLast()
+            komatches.removeLast()
+            komatches.removeLast()
+            komatches.removeLast()
+        }else if komatches.count == 14 {
+            komatches.removeLast()
+            komatches.removeLast()
+        }else if komatches.count == 15 {
             komatches.removeLast()
         }
         
