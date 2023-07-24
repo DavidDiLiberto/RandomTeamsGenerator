@@ -10,6 +10,11 @@ import SwiftUI
 
 struct Team: Identifiable{
     
+    static func == (lhs: Team, rhs: Team) -> Bool {
+           // Hier wird überprüft, ob die beiden Team-Objekte die gleiche ID haben
+           return lhs.id == rhs.id
+       }
+    
     var id: UUID
     var teamname: String
     var color: Color

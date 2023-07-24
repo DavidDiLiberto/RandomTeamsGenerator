@@ -111,17 +111,26 @@ struct KOView: View {
                                 
                                 if komatches[i].commited == true{
                                     HStack(alignment: .center){
-                                        Text("\(komatches[i].matchnumber).")
+                                    
                                         Text("\(komatches[i].matchname)")
-                                        Text("\(komatches[i].team1.teamname)")
-                                        Spacer()
-                                        Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
-                                        Spacer()
-                                        Text("\(komatches[i].team2.teamname)")
+                                        if komatches[i].isWinnerTeam1() {
+                                            Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                            Spacer()
+                                            Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }else{
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                        }
+                                        
                                     }
                                 }else{
                                     HStack(alignment: .center){
-                                        Text("\(komatches[i].matchnumber).")
+                                        
                                         Text("\(komatches[i].matchname)")
                                         Text("\(komatches[i].team1.teamname)")
                                         Spacer()

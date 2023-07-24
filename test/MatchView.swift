@@ -89,12 +89,21 @@ public struct MatchView: View {
                             
                             if matches[matchindex].commited == true{
                                 HStack(alignment: .center){
-                                    Text("\(matches[matchindex].matchnumber):")
-                                    Text("\(matches[matchindex].team1.teamname)")
-                                    Spacer()
-                                    Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
-                                    Spacer()
-                                    Text("\(matches[matchindex].team2.teamname)")
+                                    if matches[matchindex].isWinnerTeam1() {
+                                        Text("\(matches[matchindex].matchnumber):")
+                                        Text("\(matches[matchindex].team1.teamname)").bold().font(.system(size: 23))
+                                        Spacer()
+                                        Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
+                                        Spacer()
+                                        Text("\(matches[matchindex].team2.teamname)")
+                                    }else{
+                                        Text("\(matches[matchindex].matchnumber):")
+                                        Text("\(matches[matchindex].team1.teamname)")
+                                        Spacer()
+                                        Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
+                                        Spacer()
+                                        Text("\(matches[matchindex].team2.teamname)").bold().font(.system(size: 23))
+                                    }
                                 }
                             }else{
                                 HStack(alignment: .center){
@@ -340,6 +349,8 @@ struct SingleMatchesView:  View{
         
         if match.scoreteam1 > match.scoreteam2{
             
+            match.winner = match.team1
+            
             teamsList[team1index ?? 0].wins += 1
             teamsList[team2index ?? 0].loses += 1
             
@@ -352,6 +363,9 @@ struct SingleMatchesView:  View{
             match.commited = true
             
         }else{
+            
+            match.winner = match.team2
+            
             teamsList[team2index ?? 0].wins += 1
             teamsList[team1index ?? 0].loses += 1
             

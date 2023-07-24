@@ -20,6 +20,8 @@ struct KOMatch: Identifiable{
     var winner: Team
     var commited: Bool
     
-    
+    func isWinnerTeam1() -> Bool {
+            return team1 == winner
+        }
     
 }
