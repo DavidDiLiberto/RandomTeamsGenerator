@@ -234,11 +234,11 @@ struct SingleMatchesView:  View{
             }else{
                 
                 HStack{
-                    Text("\(match.team1.teamname)").bold()
-                    Text("\(match.scoreteam1)").bold()
-                    Text(":").bold()
-                    Text("\(match.scoreteam2)").bold()
-                    Text("\(match.team2.teamname)").bold()
+                    Text("\(match.team1.teamname)").bold().font(.system(size: 25))
+                    Text("\(match.scoreteam1)").bold().font(.system(size: 25))
+                    Text(":").bold().font(.system(size: 25))
+                    Text("\(match.scoreteam2)").bold().font(.system(size: 25))
+                    Text("\(match.team2.teamname)").bold().font(.system(size: 25))
                     
                 }.padding()
                 Button{

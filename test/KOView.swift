@@ -239,7 +239,7 @@ struct KOView: View {
                     
                     Image(systemName: "trophy.fill").font(.system(size: 350)).foregroundColor(winner[0].color).onTapGesture {
                         confettiCounter += 1
-                    }.confettiCannon(counter: $confettiCounter, num: 50, colors: [winner[0].color], rainHeight: 1000.0, radius: 500.0, repetitions: 15, repetitionInterval: 0.5)
+                    }.confettiCannon(counter: $confettiCounter, num: 50, colors: [winner[0].color], rainHeight: 1000.0, radius: 500.0, repetitions: 2, repetitionInterval: 0.5)
                     Text("\(winner[0].teamname)").font(.system(size: 35)).bold()
                     
                     Spacer()
@@ -358,50 +358,73 @@ struct KOView: View {
                 
                 if komatch.commited == false{
                     
-                    HStack(){
+                    VStack{
                         
-                        VStack{
-                            Text("\(komatch.team1.teamname)").bold().padding(.horizontal, 40)
-                            
-                        }
-                        VStack{
-                            Picker("Score", selection: $komatch.scoreteam1) {
-                                ForEach(scores, id: \.self) {i in
-                                    Text("\(scores[i])").bold().scaleEffect(x: 5)
-                                }
-                            }.scaleEffect(x: 0.2)
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 20)
-                        .clipped()
-                        Text(":").bold()
+                        HStack{
+                            Spacer()
+                            VStack{
+                                Picker("Score", selection: $komatch.scoreteam1) {
+                                    ForEach(scores, id: \.self) {i in
+                                        Text("\(scores[i])")
+                                            .font(.system(size: 35))
+                                            .bold()
+                                            
+                                    }
+                                }.frame(width: 100, height: 200)
+                            }
+                            .pickerStyle(.wheel)
+                            .frame(width: 50)
+                            .clipped()
+                        Spacer()
+                        Text(":")
+                                .font(.system(size: 35))
+                                .bold()
+                        Spacer()
                         VStack{
                             Picker("Score", selection: $komatch.scoreteam2) {
                                 ForEach(scores, id: \.self) {i in
-                                    Text("\(scores[i])").bold().scaleEffect(x: 5)
+                                    Text("\(scores[i])").font(.system(size: 35)).bold()
                                 }
-                            }.scaleEffect(x: 0.2)
+                            }.frame(width: 100, height: 200)
                         }
                         .pickerStyle(.wheel)
-                        .frame(width: 20)
+                        .frame(width: 50)
                         .clipped()
-                        VStack{
-                            Text("\(komatch.team2.teamname)").bold().padding(.horizontal, 40)
-                            
-                        }
-                    }
-                    HStack(alignment: .top){
-                        VStack{
-                            ForEach(0..<komatch.team1.members.count){i in
-                                Text("\(komatch.team1.members[i].name)")
-                            }
-                        }.padding(.leading, 69)
                         Spacer()
-                        VStack{
-                            ForEach(0..<komatch.team2.members.count){i in
-                                Text("\(komatch.team2.members[i].name)")
+                        }
+                        
+                        HStack(alignment: .top){
+                            
+                            VStack(alignment: .center){
+                                
+                                
+                                    Text("\(komatch.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
+                                
+                                VStack{
+                                    ForEach(0..<komatch.team1.members.count){i in
+                                        Text("\(komatch.team1.members[i].name)").font(.system(size: 25))
+                                    }
+                                }
+                                
+                            }.multilineTextAlignment(.center)
+                            
+                            Spacer()
+                            
+                        VStack(alignment: .center){
+                            
+                                Text("\(komatch.team2.teamname)").bold().font(.system(size: 30)).frame(width: 200)
+                                
+                            VStack{
+                                ForEach(0..<komatch.team2.members.count){i in
+                                    Text("\(komatch.team2.members[i].name)").font(.system(size: 25))
+                                }
                             }
-                        }.padding(.trailing, 69)
+                        }.multilineTextAlignment(.center)
+                          
+                    }
+
+                        
+                        
                     }
                     Button{
                         declareKOWinner()
@@ -417,11 +440,11 @@ struct KOView: View {
                 }else{
                     
                     HStack{
-                        Text("\(komatch.team1.teamname)").bold()
-                        Text("\(komatch.scoreteam1)").bold()
-                        Text(":").bold()
-                        Text("\(komatch.scoreteam2)").bold()
-                        Text("\(komatch.team2.teamname)").bold()
+                        Text("\(komatch.team1.teamname)").bold().font(.system(size: 25))
+                        Text("\(komatch.scoreteam1)").bold().font(.system(size: 25))
+                        Text(":").bold().font(.system(size: 25))
+                        Text("\(komatch.scoreteam2)").bold().font(.system(size: 25))
+                        Text("\(komatch.team2.teamname)").bold().font(.system(size: 25))
                         
                     }.padding()
                     Button{
