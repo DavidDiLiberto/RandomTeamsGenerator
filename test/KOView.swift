@@ -368,7 +368,7 @@ struct KOView: View {
     }
     func viertelfinaleMitAchtel(){
         for i in 0..<4{
-            let newKOMatch = KOMatch(id: UUID(), matchname: "Virtelfinale:    ", matchnumber: i+1, team1: komatches[0+i].winner, team2: komatches[7-i].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0+i].winner, commited: false)
+            let newKOMatch = KOMatch(id: UUID(), matchname: "Viertelfinale:    ", matchnumber: i+1, team1: komatches[0+i].winner, team2: komatches[7-i].winner, scoreteam1: 0, scoreteam2: 0, winner: komatches[0+i].winner, commited: false)
             self.komatches.append(newKOMatch)
         }
     }
