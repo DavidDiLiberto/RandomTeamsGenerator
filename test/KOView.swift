@@ -331,6 +331,14 @@ struct KOView: View {
                     }.confettiCannon(counter: $confettiCounter, num: 50, colors: [winner[0].color], rainHeight: 1000.0, radius: 500.0, repetitions: 2, repetitionInterval: 0.5)
                     Text("\(winner[0].teamname)").font(.system(size: 35)).bold()
                     
+                    VStack {
+                        ForEach(0..<winner[0].members.count) {member in
+                            Text("\(winner[0].members[member].name)")
+                                        .font(.system(size: 25))
+                                            
+                                    }
+                                }
+
                     Spacer()
                 }
             }

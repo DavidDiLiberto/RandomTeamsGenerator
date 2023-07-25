@@ -117,7 +117,7 @@ public struct MatchView: View {
                             }
                         }
                     }
-                    if matches[0].commited == false{
+                    if matches[0].commited == false && komatches.count == 0{
                         Button{
                             createKOMatchplan()
                             selectedTab = 4
