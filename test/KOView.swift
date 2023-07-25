@@ -100,50 +100,907 @@ struct KOView: View {
             
             if winner.isEmpty{
                 
+                
+                
                 NavigationView{
                     
-                    if komatches.count>0{
+// MARK: - Direktes Finale
+// ANCHOR: - Direktes Finale
+                    
+                    if komatches.count == 1{
                         
-                        
-                        
-                        List(0..<komatches.count, id: \.self) { i in
-                            NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
-                                
-                                if komatches[i].commited == true{
-                                    HStack(alignment: .center){
+                        VStack{
+                            Text("Finale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<komatches.count, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
                                     
-                                        Text("\(komatches[i].matchname)")
-                                        if komatches[i].isWinnerTeam1() {
-                                            Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
-                                            Spacer()
-                                            Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
-                                            Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
-                                        }else{
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
                                             Text("\(komatches[i].team1.teamname)")
                                             Spacer()
-                                            Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                            Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            Text("\(komatches[i].team2.teamname)")
                                         }
-                                        
                                     }
-                                }else{
-                                    HStack(alignment: .center){
-                                        
-                                        Text("\(komatches[i].matchname)")
-                                        Text("\(komatches[i].team1.teamname)")
-                                        Spacer()
-                                        Text("vs.")
-                                        Spacer()
-                                        Text("\(komatches[i].team2.teamname)")
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
+// MARK: - Halbfinale
+// ANCHOR: - Halbfinale
+                    
+                    
+                    else if komatches.count == 2{
+                        
+                        VStack{
+
+
+                            Text("Halbinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<komatches.count, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
                                     }
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
+// MARK: - Finale nach Halbfinale
+// ANCHOR: - Finale nach Halbfinale
+                    
+                    else if komatches.count == 3{
+                        
+                        VStack{
+
+
+
+
+                            
+
+                            //NOTE - Finale
+
+                            Text("Finale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<1, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[2], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[2].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[2].isWinnerTeam1() {
+                                                Text("\(komatches[2].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[2].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[2].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[2].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[2].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[2].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+
+
+                            //NOTE - Halbfinale
+
+                            Text("Halbfinale")
+                                .font(.system(size: 20))
+                                .padding(.top)
+                            
+                            List(0..<2, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+
+
+
+
+
+
+                        }
+                    }
+                    
+// MARK: - Viertelfinale
+// ANCHOR: - Viertelfinale
+                    
+                    
+                    else if komatches.count == 4{
+                        
+                        VStack{
+                            Text("Viertelfinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<4, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                    
+// MARK: - Halbfinale nach Viertelfinale
+// ANCHOR: - Halbfinale nach Viertelfinale
+                    
+                    else if komatches.count == 6{
+                        
+                        VStack{
+
+
+
+
+
+
+
+
+                            //NOTE - Halbfinale
+
+                            Text("Halbfinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<2, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+4], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+4].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+4].isWinnerTeam1() {
+                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+4].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+4].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+4].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+4].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+                            
+
+
+
+
+
+                            //NOTE - Viertelfinale
+
+                            Text("Viertelfinale")
+                                .font(.system(size: 20))
+                                .padding(.top)
+                            
+                            List(0..<4, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+
+
+
+
+
+
+
+                        }
+                    }
+                    
+// MARK: - Finale nach Viertelfinale
+// ANCHOR: - Finale nach Viertelfinale
+                    
+                    else if komatches.count == 7{
+                        
+                        VStack{
+
+
+
+
+
+
+
+                            //NOTE - Finale
+
+                            Text("Finale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<1, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+6], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+6].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+6].isWinnerTeam1() {
+                                                Text("\(komatches[i+6].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+6].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+6].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+6].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+6].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+6].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+
+
+
+
+
+                            //NOTE - Halbfinale
+
+                            Text("Halbfinale")
+                               .font(.system(size: 20))
+                                .padding(.top)
+                            
+                            List(0..<2, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+4], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+4].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+4].isWinnerTeam1() {
+                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+4].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+4].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+4].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+4].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+
+
+
+
+                        }
+                    }
+                    
+// MARK: - Achtelfinale
+// ANCHOR: - Achtelfinale
+                    
+                    else if komatches.count == 8{
+
+                        
+                        
+                        VStack{
+                            Text("Achtelfinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<8, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
+                                    }
+                                    
                                 }
                                 
                             }
                         }
-                        
                     }
+                    
+// MARK: - Viertelfinale nach Achtelfinale
+// ANCHOR: - Viertelfinale nach Achtelfinale
+                    
+                    else if komatches.count == 12{
+                        
+                        VStack{
+
+
+
+
+
+
+                            //NOTE - Viertelfinale
+
+                            Text("Viertelfinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<4, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+8], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+8].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+8].isWinnerTeam1() {
+                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+8].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+8].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+8].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+8].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+
+
+
+
+
+
+
+                            //NOTE - Achtelfinale
+                              
+                            Text("Achtelfinale")
+                                .font(.system(size: 20))
+                                .padding()
+                            
+                            List(0..<8, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i].isWinnerTeam1() {
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                            }
+
+                            
+
+
+
+
+
+
+                        }
+                    }
+                    
+// MARK: - Halbfinale nach Achtelfinale
+// ANCHOR: - Halbfinale nach Achtelfinale
+                    
+                    else if komatches.count == 14{
+                        
+                        VStack{
+
+                                        
+
+
+
+
+                            //NOTE - Halbfinale
+                        
+                            Text("Halbfinale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<2, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+12], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+12].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+12].isWinnerTeam1() {
+                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+12].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+12].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+12].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+12].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                           
+
+
+
+
+                            //NOTE - Viertelfinale
+                            
+                            Text("Viertelfinale")
+                                .font(.system(size: 20))
+                                .padding()
+                            
+                            List(0..<4, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+8], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+8].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+8].isWinnerTeam1() {
+                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+8].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+8].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+8].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+8].team2.teamname)")
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+                
+
+
+
+
+
+
+                        }
+                    }
+                    
+ // MARK: - Finale nach Achtelfinale
+// ANCHOR: - Finale nach Achtelfinale
+                    
+                    else if komatches.count == 15{
+                        
+                        VStack{
+                            
+
+
+
+
+
+
+                            //NOTE - Finale 
+
+                            Text("Finale")
+                                .font(.system(size: 35))
+                                .bold()
+                                .padding(.top, 150)
+                            
+                            List(0..<1, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+14], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+14].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+14].isWinnerTeam1() {
+                                                Text("\(komatches[i+14].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+14].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+14].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+14].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+14].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+14].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+                           
+
+
+
+
+                            //NOTE - Halbfinale
+                        
+                            Text("Halbfinale")
+                                .font(.system(size: 20))
+                                .padding()
+                            
+                            List(0..<2, id: \.self) { i in
+                                NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+12], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
+                                    
+                                    if komatches[i+12].commited == true{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            if komatches[i+12].isWinnerTeam1() {
+                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23))
+                                                Spacer()
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+12].team2.teamname)")
+                                            }else{
+                                                Text("\(komatches[i+12].team1.teamname)")
+                                                Spacer()
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Spacer()
+                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23))
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i+12].team1.teamname)")
+                                            Spacer()
+                                            Text("vs.")
+                                            Spacer()
+                                            Text("\(komatches[i+12].team2.teamname)")
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+
+
+
+
+
+
+
+
+                        }
+                    }
+                    
+                    
+                    
                     
                     
                     
@@ -238,7 +1095,7 @@ struct KOView: View {
                     .frame(width: 250, height: 55, alignment: .center)
                     .padding()
                 }
-
+                
                 else if komatches.count == 8 && inSingleView == false && komatches[0].commited == true && komatches[1].commited == true && komatches[2].commited == true && komatches[3].commited == true && komatches[4].commited == true && komatches[5].commited == true && komatches[6].commited == true && komatches[7].commited == true{
                     Button{
                         viertelfinaleMitAchtel()
@@ -334,11 +1191,11 @@ struct KOView: View {
                     VStack {
                         ForEach(0..<winner[0].members.count) {member in
                             Text("\(winner[0].members[member].name)")
-                                        .font(.system(size: 25))
-                                            
-                                    }
-                                }
-
+                                .font(.system(size: 25))
+                            
+                        }
+                    }
+                    
                     Spacer()
                 }
             }
@@ -493,29 +1350,29 @@ struct KOView: View {
                                         Text("\(scores[i])")
                                             .font(.system(size: 35))
                                             .bold()
-                                            
+                                        
                                     }
                                 }.frame(width: 100, height: 200)
                             }
                             .pickerStyle(.wheel)
                             .frame(width: 50)
                             .clipped()
-                        Spacer()
-                        Text(":")
+                            Spacer()
+                            Text(":")
                                 .font(.system(size: 35))
                                 .bold()
-                        Spacer()
-                        VStack{
-                            Picker("Score", selection: $komatch.scoreteam2) {
-                                ForEach(scores, id: \.self) {i in
-                                    Text("\(scores[i])").font(.system(size: 35)).bold()
-                                }
-                            }.frame(width: 100, height: 200)
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 50)
-                        .clipped()
-                        Spacer()
+                            Spacer()
+                            VStack{
+                                Picker("Score", selection: $komatch.scoreteam2) {
+                                    ForEach(scores, id: \.self) {i in
+                                        Text("\(scores[i])").font(.system(size: 35)).bold()
+                                    }
+                                }.frame(width: 100, height: 200)
+                            }
+                            .pickerStyle(.wheel)
+                            .frame(width: 50)
+                            .clipped()
+                            Spacer()
                         }
                         
                         HStack(alignment: .top){
@@ -523,7 +1380,7 @@ struct KOView: View {
                             VStack(alignment: .center){
                                 
                                 
-                                    Text("\(komatch.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
+                                Text("\(komatch.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
                                 
                                 VStack{
                                     ForEach(0..<komatch.team1.members.count){i in
@@ -535,19 +1392,19 @@ struct KOView: View {
                             
                             Spacer()
                             
-                        VStack(alignment: .center){
-                            
+                            VStack(alignment: .center){
+                                
                                 Text("\(komatch.team2.teamname)").bold().font(.system(size: 30)).frame(width: 200)
                                 
-                            VStack{
-                                ForEach(0..<komatch.team2.members.count){i in
-                                    Text("\(komatch.team2.members[i].name)").font(.system(size: 25))
+                                VStack{
+                                    ForEach(0..<komatch.team2.members.count){i in
+                                        Text("\(komatch.team2.members[i].name)").font(.system(size: 25))
+                                    }
                                 }
-                            }
-                        }.multilineTextAlignment(.center)
-                          
-                    }
-
+                            }.multilineTextAlignment(.center)
+                            
+                        }
+                        
                         
                         
                     }
