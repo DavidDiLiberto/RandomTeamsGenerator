@@ -108,29 +108,49 @@ public struct MatchView: View {
                                 HStack(alignment: .center){
                                     if matches[matchindex].isWinnerTeam1() {
                                         Text("\(matches[matchindex].matchnumber):")
-                                        Text("\(matches[matchindex].team1.teamname)").bold().font(.system(size: 23))
+                                        Text("\(matches[matchindex].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1) 
+                                        
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
+            
                                         Spacer()
                                         Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
                                         Spacer()
-                                        Text("\(matches[matchindex].team2.teamname)")
+                                        Text("\(matches[matchindex].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                     }else{
                                         Text("\(matches[matchindex].matchnumber):")
-                                        Text("\(matches[matchindex].team1.teamname)")
+                                        Text("\(matches[matchindex].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
+                                        
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                         Spacer()
                                         Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
                                         Spacer()
-                                        Text("\(matches[matchindex].team2.teamname)").bold().font(.system(size: 23))
+                                        Text("\(matches[matchindex].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
+                                        
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                     }
                                 }
+                                .frame(width: 320) // Definiere die Gesamtbreite des HStacks
+                                
+    
                             }else{
                                 HStack(alignment: .center){
                                     Text("\(matches[matchindex].matchnumber):")
-                                    Text("\(matches[matchindex].team1.teamname)")
+                                    Text("\(matches[matchindex].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                     Spacer()
                                     Text("vs.")
                                     Spacer()
-                                    Text("\(matches[matchindex].team2.teamname)")
+                                    Text("\(matches[matchindex].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
+                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                 }
+                                .frame(width: 320) // Definiere die Gesamtbreite des HStacks
                             }
                         }
                     }

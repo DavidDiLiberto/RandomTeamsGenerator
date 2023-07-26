@@ -97,7 +97,8 @@ struct ResultsView: View {
                     Spacer()
                     VStack(alignment: .center){ Text("Team").bold().font(.system(size: 30))
                         ForEach(0..<teamsList.count, id: \.self) { i in
-                            Text("\(sortedList[i].teamname)").bold().padding(.vertical).font(.system(size: 20))}
+                            Text("\(sortedList[i].teamname)").bold().padding(.vertical).font(.system(size: 20))}.minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                        .lineLimit(1)
                     }
                     Spacer()
                     VStack(alignment: .center){ Text("W:L").bold().font(.system(size: 30))

@@ -123,29 +123,41 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
-                                        }
+                                        }.frame(width: 320)
                                     }else{
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -176,17 +188,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -194,11 +214,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -234,17 +258,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[2].isWinnerTeam1() {
-                                                Text("\(komatches[2].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[2].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)")
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[2].team2.teamname)")
+                                                Text("\(komatches[2].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[2].team1.teamname)")
+                                                Text("\(komatches[2].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)")
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[2].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[2].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -252,11 +284,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[2].team1.teamname)")
+                                            Text("\(komatches[2].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[2].team2.teamname)")
+                                            Text("\(komatches[2].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -280,17 +316,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -298,11 +342,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -340,13 +388,17 @@ struct KOView: View {
                                             if komatches[i].isWinnerTeam1() {
                                                 Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
                                                 Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
                                             }
@@ -356,11 +408,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -398,17 +454,27 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+4].isWinnerTeam1() {
-                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+4].team2.teamname)")
+                                                Text("\(komatches[i+4].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+4].team1.teamname)")
+                                                Text("\(komatches[i+4].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -416,11 +482,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+4].team1.teamname)")
+                                            Text("\(komatches[i+4].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+4].team2.teamname)")
+                                            Text("\(komatches[i+4].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -445,17 +515,27 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -463,11 +543,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -512,17 +596,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+6].isWinnerTeam1() {
-                                                Text("\(komatches[i+6].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+6].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)")
+                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+6].team2.teamname)")
+                                                Text("\(komatches[i+6].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+6].team1.teamname)")
+                                                Text("\(komatches[i+6].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)")
+                                                Text( "\(komatches[i+6].scoreteam1) : \(komatches[i+6].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+6].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+6].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -530,11 +622,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+6].team1.teamname)")
+                                            Text("\(komatches[i+6].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+6].team2.teamname)")
+                                            Text("\(komatches[i+6].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -561,17 +657,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+4].isWinnerTeam1() {
-                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+4].team2.teamname)")
+                                                Text("\(komatches[i+4].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+4].team1.teamname)")
+                                                Text("\(komatches[i+4].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)")
+                                                Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+4].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -579,11 +683,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+4].team1.teamname)")
+                                            Text("\(komatches[i+4].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+4].team2.teamname)")
+                                            Text("\(komatches[i+4].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -619,17 +727,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -637,11 +753,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -678,17 +798,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+8].isWinnerTeam1() {
-                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+8].team2.teamname)")
+                                                Text("\(komatches[i+8].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+8].team1.teamname)")
+                                                Text("\(komatches[i+8].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -696,11 +824,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+8].team1.teamname)")
+                                            Text("\(komatches[i+8].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+8].team2.teamname)")
+                                            Text("\(komatches[i+8].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -728,17 +860,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)")
+                                                Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i].team1.teamname)")
+                                                Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -746,11 +886,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i].team1.teamname)")
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i].team2.teamname)")
+                                            Text("\(komatches[i].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -794,17 +938,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+12].isWinnerTeam1() {
-                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+12].team2.teamname)")
+                                                Text("\(komatches[i+12].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+12].team1.teamname)")
+                                                Text("\(komatches[i+12].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -812,11 +964,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+12].team1.teamname)")
+                                            Text("\(komatches[i+12].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+12].team2.teamname)")
+                                            Text("\(komatches[i+12].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -843,17 +999,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+8].isWinnerTeam1() {
-                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+8].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+8].team2.teamname)")
+                                                Text("\(komatches[i+8].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+8].team1.teamname)")
+                                                Text("\(komatches[i+8].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)")
+                                                Text( "\(komatches[i+8].scoreteam1) : \(komatches[i+8].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+8].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -861,11 +1025,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+8].team1.teamname)")
+                                            Text("\(komatches[i+8].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+8].team2.teamname)")
+                                            Text("\(komatches[i+8].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                     
@@ -910,17 +1078,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+14].isWinnerTeam1() {
-                                                Text("\(komatches[i+14].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+14].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)")
+                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+14].team2.teamname)")
+                                                Text("\(komatches[i+14].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+14].team1.teamname)")
+                                                Text("\(komatches[i+14].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)")
+                                                Text( "\(komatches[i+14].scoreteam1) : \(komatches[i+14].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+14].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+14].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -928,11 +1104,15 @@ struct KOView: View {
                                         HStack(alignment: .center){
                                             
                                             
-                                            Text("\(komatches[i+14].team1.teamname)")
+                                            Text("\(komatches[i+14].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+14].team2.teamname)")
+                                            Text("\(komatches[i+14].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -958,17 +1138,25 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i+12].isWinnerTeam1() {
-                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+12].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+12].team2.teamname)")
+                                                Text("\(komatches[i+12].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }else{
-                                                Text("\(komatches[i+12].team1.teamname)")
+                                                Text("\(komatches[i+12].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                                 Spacer()
-                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)")
+                                                Text( "\(komatches[i+12].scoreteam1) : \(komatches[i+12].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i+12].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                             }
                                             
                                         }
@@ -980,7 +1168,9 @@ struct KOView: View {
                                             Spacer()
                                             Text("vs.")
                                             Spacer()
-                                            Text("\(komatches[i+12].team2.teamname)")
+                                            Text("\(komatches[i+12].team2.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
                                     }
                                 }
@@ -1425,7 +1615,7 @@ struct KOView: View {
                         Text("\(komatch.team1.teamname)").bold().font(.system(size: 25))
                         Text("\(komatch.scoreteam1)").bold().font(.system(size: 25))
                         Text(":").bold().font(.system(size: 25))
-                        Text("\(komatch.scoreteam2)").bold().font(.system(size: 25))
+                        Text("\(komatch.scoreteam2)").lineLimit(1).bold().font(.system(size: 25))
                         Text("\(komatch.team2.teamname)").bold().font(.system(size: 25))
                         
                     }.padding()

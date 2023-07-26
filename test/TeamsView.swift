@@ -29,6 +29,7 @@ public struct TeamsView: View {
     @Binding var matches: [Match]
     @Binding var counter: Int
     @Binding var matchcounter: Int
+    @Binding var commitedMatches : Bool
     var roundedPlayersPerTeam: Int{
         let numberOfPlayers = playersList.count + removedPlayersList.count
         let numberOfTeamsD = teamsList.count
@@ -183,6 +184,7 @@ public struct TeamsView: View {
                 
                 Button{
                     createMatchplan()
+                    commitedMatches = checkForCommittedMatches(matches: matches)
                     selectedTab = 2
                          }label: {
                              Label("Bestätigen", systemImage: "checkmark.circle.fill")
@@ -208,7 +210,7 @@ public struct TeamsView: View {
                     ForEach(0..<teamsList.count, id: \.self) { index4 in
                         
                         HStack(alignment: .top, spacing: 50){
-                            Text("\(teamsList[index4].teamname)")
+                            TextField("\(teamsList[index4].teamname)", text: $teamsList[index4].teamname)
                                 .bold().frame(width: 160, height: 20, alignment: .leading)
                                 .alignmentGuide(.leading) { d in
                                     d[.leading]
@@ -253,7 +255,7 @@ public struct TeamsView: View {
                     ForEach(0..<restForRandomizer, id: \.self){ index in
                         
                         HStack(alignment: .top, spacing: 50){
-                            Text("\(teamsList[index].teamname)")
+                            TextField("\(teamsList[index].teamname)", text: $teamsList[index].teamname)
                                 .bold().frame(width: 160, height: 20, alignment: .leading)
                                 .alignmentGuide(.leading) { d in
                                     d[.leading]
@@ -500,6 +502,17 @@ public struct TeamsView: View {
             teamsList[i].pointsFor = 0
             teamsList[i].pointsAgainst = 0
         }
+    }
+
+       func checkForCommittedMatches(matches: [Match]) -> Bool{
+        
+         for match in matches {
+        if match.commited == true {
+            return true
+        }
+    }
+    return false
+        
     }
 
 }

@@ -51,7 +51,7 @@ struct ContentView: View {
                     Label("Players", systemImage: "person")
                 }
                 .tag(0)
-            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter)
+            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter, commitedMatches: $commitedMatches)
                 .tabItem    {
                     Label("Teams", systemImage: "person.3.fill")
                 }
