@@ -163,7 +163,7 @@ struct KOView: View {
                         VStack{
 
 
-                            Text("Halbinale")
+                            Text("Halbfinale")
                                 .font(.system(size: 35))
                                 .bold()
                                 .padding(.top, 150)
@@ -236,13 +236,13 @@ struct KOView: View {
                                             if komatches[2].isWinnerTeam1() {
                                                 Text("\(komatches[2].team1.teamname)").bold().font(.system(size: 23))
                                                 Spacer()
-                                                Text( "\(komatches[2].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)")
                                                 Spacer()
                                                 Text("\(komatches[2].team2.teamname)")
                                             }else{
                                                 Text("\(komatches[2].team1.teamname)")
                                                 Spacer()
-                                                Text( "\(komatches[2].scoreteam1) : \(komatches[i].scoreteam2)")
+                                                Text( "\(komatches[2].scoreteam1) : \(komatches[2].scoreteam2)")
                                                 Spacer()
                                                 Text("\(komatches[2].team2.teamname)").bold().font(.system(size: 23))
                                             }

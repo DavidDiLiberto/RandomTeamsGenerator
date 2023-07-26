@@ -24,6 +24,8 @@ public struct MatchView: View {
     @Binding var komatches: [KOMatch]
     @Binding var selectedTab: Int
     @Binding var commitedResults: Bool
+    @Binding var commitedMatches : Bool
+    @Binding var allMatchesCommited : Bool
     let scores = [0,1,2,3,4,5,6]
     
     
@@ -41,6 +43,21 @@ public struct MatchView: View {
             .cornerRadius(.infinity)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .border(Color.blue)
+        }
+    }
+    
+    struct RoundedRectangleButtonStyleGreen: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.green)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
         }
     }
     
@@ -84,7 +101,7 @@ public struct MatchView: View {
                 VStack{
                     
                     List(0..<matches.count, id: \.self) { matchindex in
-                        NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches)){
+                        NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches, commitedMatches: $commitedMatches, allMatchesCommited: $allMatchesCommited)){
                             
                             
                             if matches[matchindex].commited == true{
@@ -117,7 +134,7 @@ public struct MatchView: View {
                             }
                         }
                     }
-                    if matches[0].commited == false && komatches.count == 0{
+                    if commitedMatches == false && komatches.count == 0{
                         Button{
                             createKOMatchplan()
                             selectedTab = 4
@@ -128,6 +145,15 @@ public struct MatchView: View {
                         .buttonStyle(RoundedRectangleButtonStyleRed())
                         .frame(width: 300, height: 55, alignment: .center)
                         .padding()
+                    }else if allMatchesCommited == true && komatches.count == 0{
+                        Button{
+                            selectedTab = 3
+                        }label: {
+                            Label("Ergebnisse zeigen", systemImage: "")
+                        }
+                        .buttonStyle(RoundedRectangleButtonStyleGreen())
+                        .frame(width: 300, height: 55, alignment: .center)
+                        .padding()
                     }
                 }
             }
@@ -136,6 +162,10 @@ public struct MatchView: View {
           
         
     }
+    
+
+    
+    
     func createKOMatchplan(){
         
         let sortedList = teamsList.sorted{
@@ -196,6 +226,8 @@ struct SingleMatchesView:  View{
     @Binding var matchcounter: Int
     @Binding var selectedScore: Int
     @Binding var komatches: [KOMatch]
+    @Binding var commitedMatches : Bool
+    @Binding var allMatchesCommited : Bool
     let scores = [0,1,2,3,4,5,6]
     
     
@@ -313,6 +345,8 @@ struct SingleMatchesView:  View{
 
                 Button{
                     declareWinner()
+                    commitedMatches = checkForCommittedMatches(matches: matches)
+                    allMatchesCommited = checkIfAllMatchesCommitted(matches: matches)
                     self.presentationMode.wrappedValue.dismiss()
                 }label: {
                     Label("Bestätigen", systemImage: "checkmark.circle.fill")
@@ -333,7 +367,8 @@ struct SingleMatchesView:  View{
                 }.padding()
                 Button{
                     removeWandL()
-                    
+                    commitedMatches = checkForCommittedMatches(matches: matches)
+                    allMatchesCommited = checkIfAllMatchesCommitted(matches: matches)
                 }label: {
                     Label("bearbeiten", systemImage: "pencil")
                 }
@@ -410,7 +445,29 @@ struct SingleMatchesView:  View{
             match.commited = false
         }
     }
-    
+
+
+    func checkForCommittedMatches(matches: [Match]) -> Bool{
+        
+         for match in matches {
+        if match.commited == true {
+            return true
+        }
+    }
+    return false
+        
+    }
+
+        func checkIfAllMatchesCommitted(matches: [Match]) -> Bool{
+        
+         for match in matches {
+        if match.commited == false {
+            return false
+        }
+    }
+    return true
+        
+    }
 
     
     
