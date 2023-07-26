@@ -319,7 +319,7 @@ public struct TeamsView: View {
                     }
                     ForEach(restForRandomizer..<teamsList.count, id: \.self) {index in
                         HStack(alignment: .top, spacing: 50){
-                            Text("\(teamsList[index].teamname)")
+                            TextField("\(teamsList[index].teamname)", text: $teamsList[index].teamname)
                                 .bold().frame(width: 160, height: 20, alignment: .leading)
                                 .alignmentGuide(.leading) { d in
                                     d[.leading]
