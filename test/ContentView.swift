@@ -41,6 +41,7 @@ struct ContentView: View {
     @State var playersCommited:Bool = false
     @State var commitedMatches: Bool = false
     @State var allMatchesCommited: Bool = false
+    @State var settingsCommitted: Bool = false
     
     var body: some View {
         
@@ -51,7 +52,7 @@ struct ContentView: View {
                     Label("Players", systemImage: "person")
                 }
                 .tag(0)
-            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter, commitedMatches: $commitedMatches)
+            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter, commitedMatches: $commitedMatches, settingsCommitted: $settingsCommitted)
                 .tabItem    {
                     Label("Teams", systemImage: "person.3.fill")
                 }

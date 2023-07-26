@@ -30,6 +30,7 @@ public struct TeamsView: View {
     @Binding var counter: Int
     @Binding var matchcounter: Int
     @Binding var commitedMatches : Bool
+    @Binding var settingsCommitted : Bool
     var roundedPlayersPerTeam: Int{
         let numberOfPlayers = playersList.count + removedPlayersList.count
         let numberOfTeamsD = teamsList.count
@@ -114,7 +115,12 @@ public struct TeamsView: View {
     ////////////////////////////////////////////
     // Instruction View
     var instructions: some View {
+
+       
+            
         VStack{
+            
+            if settingsCommitted == false{
             
             Text("Mit wie vielen Teams soll gespielt werden?")
                 .font(.system(size: 18))
@@ -185,7 +191,7 @@ public struct TeamsView: View {
                 Button{
                     createMatchplan()
                     commitedMatches = checkForCommittedMatches(matches: matches)
-                    selectedTab = 2
+                    settingsCommitted = true
                          }label: {
                              Label("Bestätigen", systemImage: "checkmark.circle.fill")
                          }
@@ -195,6 +201,20 @@ public struct TeamsView: View {
          
             
             
+        }else{
+            
+            Button{
+                
+                settingsCommitted = false
+                
+            }label: {
+                Label("Einstellungen bearbeiten", systemImage: "pencil")
+            }
+            .buttonStyle(RoundedRectangleButtonStyleBlue())
+            .frame(width: 300, height: 55, alignment: .center)
+
+        }
+            
         }
     }
     
@@ -203,6 +223,8 @@ public struct TeamsView: View {
     ////////////////////////////////////////////
     // Form View
     var form: some View {
+
+        VStack{
         
         Form{
             if restForRandomizer == 0{
@@ -248,7 +270,9 @@ public struct TeamsView: View {
                                 .stroke(.blue, lineWidth: 4)
                         )
                     }
+                 
                 }
+
             }else{
                 VStack(alignment: .leading, spacing: 20) {
                     
@@ -333,9 +357,31 @@ public struct TeamsView: View {
                                 .stroke(.blue, lineWidth: 4)
                         )
                     }
+
+
                 }
                 
             }
+        }
+
+                    if settingsCommitted == true{
+                
+            
+                        Button{
+                            
+                            createMatchplan()
+                            selectedTab = 2
+                            
+                        }label: {
+                            Label("Teams bestätigen", systemImage: "checkmark.circle.fill")
+                        }
+                        .buttonStyle(RoundedRectangleButtonStyleGreen())
+                        .frame(width: 250, height: 55, alignment: .center)
+                        .padding()
+                            }
+
+
+
         }
     }
     
@@ -514,6 +560,8 @@ public struct TeamsView: View {
     return false
         
     }
+
+
 
 }
 

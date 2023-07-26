@@ -788,7 +788,7 @@ struct KOView: View {
                             Text("Viertelfinale")
                                 .font(.system(size: 35))
                                 .bold()
-                                .padding(.top, 150)
+                                .padding(.top, 50)
                             
                             List(0..<4, id: \.self) { i in
                                 NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i+8], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
@@ -850,7 +850,7 @@ struct KOView: View {
                               
                             Text("Achtelfinale")
                                 .font(.system(size: 20))
-                                .padding()
+                                .padding(.bottom, 5)
                             
                             List(0..<8, id: \.self) { i in
                                 NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
