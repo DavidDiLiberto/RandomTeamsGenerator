@@ -22,8 +22,10 @@ public struct TeamsView: View {
     @Binding var playersList: [Player]
     @Binding var removedPlayersList: [Player]
     @Binding var teamsList: [Team]
+    @Binding var originalTeamNames: [String]
     @Binding var teamNames: [String]
     @Binding var removedTeamNames: [String]
+    @Binding var originalTeamColors: [Color]
     @Binding var teamColors: [Color]
     @Binding var removedTeamColors: [Color]
     @Binding var matches: [Match]
@@ -192,11 +194,12 @@ public struct TeamsView: View {
                     createMatchplan()
                     commitedMatches = checkForCommittedMatches(matches: matches)
                     settingsCommitted = true
-                         }label: {
-                             Label("Bestätigen", systemImage: "checkmark.circle.fill")
-                         }
-                         .buttonStyle(RoundedRectangleButtonStyleGreen())
-                         .frame(width: 200, height: 55, alignment: .center)
+                    setTeamsNameToPlayerName() //setzt teamname auf playername wenn nur ein spieler im team ist
+                    }label: {
+                        Label("Bestätigen", systemImage: "checkmark.circle.fill")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleGreen())
+                    .frame(width: 200, height: 55, alignment: .center)
             }
          
             
@@ -206,6 +209,7 @@ public struct TeamsView: View {
             Button{
                 
                 settingsCommitted = false
+                setTeamNamesToOriginal()
                 
             }label: {
                 Label("Einstellungen bearbeiten", systemImage: "pencil")
@@ -549,6 +553,46 @@ public struct TeamsView: View {
             teamsList[i].pointsAgainst = 0
         }
     }
+
+    func setTeamsNameToPlayerName(){  //setzt teamname auf playername wenn nur ein spieler im team ist
+        for i in 0..<teamsList.count{
+            if teamsList[i].members.count == 1{
+                
+                teamsList[i].teamname = teamsList[i].members[0].name
+            }
+        }
+    }
+
+    func setTeamNamesToOriginal(){
+
+        teamNames = originalTeamNames
+        teamColors = originalTeamColors
+
+        removedTeamNames.removeAll()
+        removedTeamColors.removeAll()
+
+        for i in 0..<teamsList.count{
+            if teamNames.isEmpty {
+                
+                    let randomNumber = Int.random(in: 0..<100)
+                    teamsList[i].teamname = "Team \(randomNumber)"
+                    
+                
+            }else {
+                
+                let randomNumber = Int.random(in: 0..<teamNames.count)
+                teamsList[i].teamname = "Team \(teamNames[randomNumber])"
+                teamsList[i].color = teamColors[randomNumber]
+                self.teamNames.remove(at: randomNumber)
+                self.teamColors.remove(at: randomNumber)
+                
+            }
+
+
+            }
+
+    }
+
 
        func checkForCommittedMatches(matches: [Match]) -> Bool{
         

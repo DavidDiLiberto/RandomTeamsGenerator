@@ -31,8 +31,10 @@ struct ContentView: View {
     @State var teamsList: [Team] = []
     @State var matches: [Match] = []
     @State var komatches: [KOMatch] = []
+    @State var originalTeamNames: [String] = ["🔴", "🔵", "🟢", "🟡", "💖", "🟤", "⚫️", "⚪️", "🟠", "🟣"]
     @State var teamNames: [String] = ["🔴", "🔵", "🟢", "🟡", "💖", "🟤", "⚫️", "⚪️", "🟠", "🟣"]
     @State var removedTeamNames: [String] = []
+    @State var originalTeamColors: [Color] = [Color("Red"), Color("Blue"), Color("Green"), Color("Yellow"), Color("Pink"), Color("Brown"), Color("Black"), Color("White"), Color("Orange"), Color("Purple")]
     @State var teamColors: [Color] = [Color("Red"), Color("Blue"), Color("Green"), Color("Yellow"), Color("Pink"), Color("Brown"), Color("Black"), Color("White"), Color("Orange"), Color("Purple")]
     @State var removedTeamColors: [Color] = []
     @State var commitedResults: Bool = false
@@ -52,7 +54,7 @@ struct ContentView: View {
                     Label("Players", systemImage: "person")
                 }
                 .tag(0)
-            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter, commitedMatches: $commitedMatches, settingsCommitted: $settingsCommitted)
+            TeamsView(selectedTab: $selectedTab, confirmTeamsCounter: $confirmTeamsCounter, playersList: $playersList, removedPlayersList: $removedPlayersList, teamsList: $teamsList, originalTeamNames: $originalTeamNames, teamNames: $teamNames, removedTeamNames: $removedTeamNames, originalTeamColors: $originalTeamColors, teamColors: $teamColors, removedTeamColors: $removedTeamColors, matches: $matches, counter: $counter, matchcounter: $matchcounter, commitedMatches: $commitedMatches, settingsCommitted: $settingsCommitted)
                 .tabItem    {
                     Label("Teams", systemImage: "person.3.fill")
                 }

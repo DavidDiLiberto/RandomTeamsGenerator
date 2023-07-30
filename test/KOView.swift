@@ -1528,7 +1528,7 @@ struct KOView: View {
                     .font(.system(size: 35))
                     .bold()
                     .onDisappear {
-                // Wenn die Zielansicht (SingleView) den Bildschirm verlässt, setzen Sie die Variable auf false
+                        // damit im KOView die Buttons wieder angezeigt werden nachdem man im SingleView war und zurückgegangen ist muss die Variable inSingleView wieder auf false gesetzt werden
                     inSingleView = false
                     }
                 
@@ -1577,10 +1577,13 @@ struct KOView: View {
                                 
                                 Text("\(komatch.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
                                 
+
+                                if komatch.team1.members.count != 1{      //wenn ein Team nur einen Spieler hat, wird der Name des spielers nur als teamname angezeigt
                                 VStack{
                                     ForEach(0..<komatch.team1.members.count){i in
                                         Text("\(komatch.team1.members[i].name)").font(.system(size: 25))
                                     }
+                                }
                                 }
                                 
                             }.multilineTextAlignment(.center)
@@ -1591,10 +1594,13 @@ struct KOView: View {
                                 
                                 Text("\(komatch.team2.teamname)").bold().font(.system(size: 30)).frame(width: 200)
                                 
+
+                                if komatch.team2.members.count != 1{      //wenn ein Team nur einen Spieler hat, wird der Name des spielers nur als teamname angezeigt
                                 VStack{
                                     ForEach(0..<komatch.team2.members.count){i in
                                         Text("\(komatch.team2.members[i].name)").font(.system(size: 25))
                                     }
+                                }
                                 }
                             }.multilineTextAlignment(.center)
                             

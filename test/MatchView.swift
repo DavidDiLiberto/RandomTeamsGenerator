@@ -332,11 +332,13 @@ struct SingleMatchesView:  View{
                             
                             
                                 Text("\(match.team1.teamname)").bold().font(.system(size: 30)).frame(width: 230)
-                            
+
+                            if match.team1.members.count != 1{      //wenn ein Team nur einen Spieler hat, wird der Name des spielers nur als teamname angezeigt
                             VStack{
                                 ForEach(0..<match.team1.members.count){i in
                                     Text("\(match.team1.members[i].name)").font(.system(size: 25))
                                 }
+                            }
                             }
                             
                         }.multilineTextAlignment(.center)
@@ -347,11 +349,14 @@ struct SingleMatchesView:  View{
                         
                             Text("\(match.team2.teamname)").bold().font(.system(size: 30)).frame(width: 200)
                             
+
+                            if match.team2.members.count != 1{      //wenn ein Team nur einen Spieler hat, wird der Name des spielers nur als teamname angezeigt
                         VStack{
                             ForEach(0..<match.team2.members.count){i in
                                 Text("\(match.team2.members[i].name)").font(.system(size: 25))
                             }
                         }
+                            }
                     }.multilineTextAlignment(.center)
                       
                 }
