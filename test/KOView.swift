@@ -96,6 +96,7 @@ struct KOView: View {
         
         
         
+        
         VStack{
             
             if winner.isEmpty{
@@ -1526,6 +1527,10 @@ struct KOView: View {
                 Text("Match \(komatch.matchnumber)")
                     .font(.system(size: 35))
                     .bold()
+                    .onDisappear {
+                // Wenn die Zielansicht (SingleView) den Bildschirm verlässt, setzen Sie die Variable auf false
+                    inSingleView = false
+                    }
                 
                 
                 if komatch.commited == false{
