@@ -111,7 +111,7 @@ public struct MatchView: View {
                                         Text("\(matches[matchindex].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
                                         .lineLimit(1) 
                                         
-                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
+                                        .frame(width: 110) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
             
                                         Spacer()
                                         Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
@@ -124,7 +124,7 @@ public struct MatchView: View {
                                         Text("\(matches[matchindex].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
                                         .lineLimit(1)
                                         
-                                        .frame(width: 120) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
+                                        .frame(width: 110) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (300)
                                         Spacer()
                                         Text( "\(matches[matchindex].scoreteam1) : \(matches[matchindex].scoreteam2)")
                                         Spacer()

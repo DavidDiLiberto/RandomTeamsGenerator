@@ -387,7 +387,9 @@ struct KOView: View {
                                             
                                             
                                             if komatches[i].isWinnerTeam1() {
-                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 135)
                                                 Spacer()
                                                 Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
@@ -401,7 +403,9 @@ struct KOView: View {
                                                 Spacer()
                                                 Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
-                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23))
+                                                Text("\(komatches[i].team2.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                    .lineLimit(1)
+                                                    .frame(width: 130)
                                             }
                                             
                                         }
@@ -458,8 +462,7 @@ struct KOView: View {
                                                 Text("\(komatches[i+4].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
                                                     .lineLimit(1)
                                                     .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
-                                                    .lineLimit(1)
-                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
+                                    
                                                 Spacer()
                                                 Text( "\(komatches[i+4].scoreteam1) : \(komatches[i+4].scoreteam2)").lineLimit(1)
                                                 Spacer()
@@ -519,8 +522,7 @@ struct KOView: View {
                                                 Text("\(komatches[i].team1.teamname)").bold().font(.system(size: 23)).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
                                                     .lineLimit(1)
                                                     .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320).minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
-                                                    .lineLimit(1)
-                                                    .frame(width: 135) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
+                                                    
                                                 Spacer()
                                                 Text( "\(komatches[i].scoreteam1) : \(komatches[i].scoreteam2)").lineLimit(1)
                                                 Spacer()
