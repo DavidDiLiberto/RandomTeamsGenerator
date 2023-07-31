@@ -44,7 +44,9 @@ struct ContentView: View {
     @State var commitedMatches: Bool = false
     @State var allMatchesCommited: Bool = false
     @State var settingsCommitted: Bool = false
-    
+    @State var rounds: [Round] = [Round(id: UUID(), roundname: "Finale", recommended : false), Round(id: UUID(), roundname: "Halbfinale", recommended : false), Round(id: UUID(), roundname: "Viertelfinale", recommended : false), Round(id: UUID(), roundname: "Achtelfinale", recommended : false)]
+    @State var selectedRound: Round = Round(id: UUID(), roundname: "Finale", recommended: false)
+
     var body: some View {
         
         TabView(selection: $selectedTab){
@@ -69,7 +71,7 @@ struct ContentView: View {
                     Label("Results", systemImage: "table")
                 }
                 .tag(3)
-            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner)
+            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner, rounds: $rounds, selectedRound: $selectedRound)
                 .tabItem    {
                     Label("KO Runde", systemImage: "trophy.fill")
                 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630FCBFD2A77362E00BFCA3F /* RoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCBFC2A77362E00BFCA3F /* RoundModel.swift */; };
 		633A170228DB6A2500DDE259 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 633A170128DB6A2500DDE259 /* ConfettiSwiftUI */; };
 		639D4CD1287CE24500272A76 /* testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D4CD0287CE24500272A76 /* testApp.swift */; };
 		639D4CD3287CE24500272A76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D4CD2287CE24500272A76 /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630FCBFC2A77362E00BFCA3F /* RoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundModel.swift; sourceTree = "<group>"; };
 		639D4CCD287CE24500272A76 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639D4CD0287CE24500272A76 /* testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApp.swift; sourceTree = "<group>"; };
 		639D4CD2287CE24500272A76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				63F6BE7D28A53E86003D0740 /* MatchModel.swift */,
 				63EB084F28D318CB0042A5B4 /* KOMatchModel.swift */,
 				639D4CE0287CE30A00272A76 /* KOView.swift */,
+				630FCBFC2A77362E00BFCA3F /* RoundModel.swift */,
 				639D4CE2287CE32100272A76 /* PlayerModel.swift */,
 				639D4CE4287CE33C00272A76 /* PlayerView.swift */,
 				639D4CE6287CE37000272A76 /* ResultsView.swift */,
@@ -176,6 +179,7 @@
 				63F6BE7E28A53E86003D0740 /* MatchModel.swift in Sources */,
 				63EB085028D318CB0042A5B4 /* KOMatchModel.swift in Sources */,
 				639D4CE3287CE32100272A76 /* PlayerModel.swift in Sources */,
+				630FCBFD2A77362E00BFCA3F /* RoundModel.swift in Sources */,
 				639D4CD3287CE24500272A76 /* ContentView.swift in Sources */,
 				639D4CE9287CE38C00272A76 /* TeamModel.swift in Sources */,
 				639D4CE1287CE30A00272A76 /* KOView.swift in Sources */,

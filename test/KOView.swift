@@ -25,6 +25,8 @@ struct KOView: View {
     @Binding var matchcounter: Int
     @Binding var inSingleView: Bool
     @Binding var winner: [Team]
+    @Binding var rounds: [Round]
+    @Binding var selectedRound: Round
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -104,11 +106,41 @@ struct KOView: View {
                 
                 
                 NavigationView{
+
+// MARK: - Einstellungen
+// ANCHOR: - Einstellungen
+
+                    if komatches.count == 0{
+                        VStack{
+                            Text("Einstellungen")
+                                .font(.system(size: 35))
+                                .bold()
+                                .onAppear{
+                                    recommendedRoundAfterLeague()
+                                    showRecommendedRound()
+                                }
+
+                            HStack{
+                                Text("Mit")
+
+                                Picker("",selection: $selectedRound) {
+                                 ForEach(rounds, id: \.self) { round in
+                                     Text(round.roundname)
+                                 }                          
+                                
+                                }
+
+                                Text("starten")
+                                
+                            }
+                                
+                        }
+                    }
                     
 // MARK: - Direktes Finale
 // ANCHOR: - Direktes Finale
                     
-                    if komatches.count == 1{
+                    else if komatches.count == 1{
                         
                         VStack{
                             Text("Finale")
@@ -1467,6 +1499,91 @@ struct KOView: View {
             komatches.removeLast()
         }
         
+    }
+    func recommendedRoundAfterLeague(){
+
+        let currentTeamNumber = teamsList.count
+
+        if currentTeamNumber < 4{
+            for i in 0..<rounds.count{
+                if i == 0{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber < 8{
+            for i in 0..<rounds.count{
+                if i == 1{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber < 16{
+            for i in 0..<rounds.count{
+                if i == 2{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber >= 16{
+            for i in 0..<rounds.count{
+                if i == 3{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }
+   
+    }
+    func recommendedRoundForInstantKO(){
+
+        let currentTeamNumber = teamsList.count
+
+        if currentTeamNumber < 3{
+            for i in 0..<rounds.count{
+                if i == 0{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber < 5{
+            for i in 0..<rounds.count{
+                if i == 1{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber < 9{
+            for i in 0..<rounds.count{
+                if i == 2{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }else if currentTeamNumber >= 9{
+            for i in 0..<rounds.count{
+                if i == 3{
+                    rounds[i].recommended = true
+                }else{
+                rounds[i].recommended = false
+                }
+            }
+        }
+
+    }
+    func showRecommendedRound(){
+        for i in 0..<rounds.count{
+            if rounds[i].recommended == true{
+                selectedRound = rounds[i]
+            }
+        }
     }
     
     
