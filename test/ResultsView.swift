@@ -20,6 +20,12 @@ struct ResultsView: View {
     @Binding var selectedTab: Int
     @Binding var commitedResults: Bool
     @Binding var winner: [Team]
+    @Binding var selectedRound: Round
+    @Binding var removedTeamNames: [String]
+    @Binding var removedTeamColors: [Color]
+    @Binding var teamNames: [String]
+    @Binding var teamColors: [Color]
+
     
     struct RoundedRectangleButtonStyleGreen: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -141,36 +147,93 @@ struct ResultsView: View {
         
         }
     }
+        func addNewTeam(){
+        
+        if teamNames.isEmpty {
+            if removedTeamNames.isEmpty{
+                let randomNumber = Int.random(in: 0..<100)
+                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", color: Color("test"), members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+                self.teamsList.append(newTeam)
+            }else{
+                let randomNumber = Int.random(in: 0..<removedTeamNames.count)
+                let newTeam = Team(id: UUID(), teamname: "\(removedTeamNames[randomNumber])", color: removedTeamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+                self.teamsList.append(newTeam)
+                self.removedTeamNames.remove(at: randomNumber)
+                self.removedTeamColors.remove(at: randomNumber)
+            }
+        }else {
+            
+            let randomNumber = Int.random(in: 0..<teamNames.count)
+            let newTeam = Team(id: UUID(), teamname: "Team \(teamNames[randomNumber])", color: teamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
+            self.teamsList.append(newTeam)
+            self.teamNames.remove(at: randomNumber)
+            self.teamColors.remove(at: randomNumber)
+            
+        }
+        
+        
+    }
+
+
     
     
     func createKOMatchplan(){
         
-        let sortedList = teamsList.sorted{
-            if $0.wins != $1.wins{
-                return $0.wins > $1.wins
-            }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
-                return $0.pointsFor > $1.pointsFor
-            }else{
-                return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+       
+        
+        
+        if selectedRound.roundname == "Finale"{
+            while teamsList.count < 2 {
+                addNewTeam()
             }
-            
-        }
-        
-        
-        if teamsList.count < 4{
-            
+               let sortedList = teamsList.sorted{
+                    if $0.wins != $1.wins{
+                        return $0.wins > $1.wins
+                    }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
+                        return $0.pointsFor > $1.pointsFor
+                    }else{
+                        return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+                    }
+                    
+                }
             let newKOMatch = KOMatch(id: UUID(), matchname: "Finale:        ", matchnumber: 1, team1: sortedList[0], team2: sortedList[1], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0], commited: false)
             self.komatches.append(newKOMatch)
             
         }
-        else if teamsList.count < 8{
+        else if selectedRound.roundname == "Halbfinale"{
+            while teamsList.count < 4 {
+                addNewTeam()
+            }
+               let sortedList = teamsList.sorted{
+                    if $0.wins != $1.wins{
+                        return $0.wins > $1.wins
+                    }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
+                        return $0.pointsFor > $1.pointsFor
+                    }else{
+                        return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+                    }
+                    
+                }
             for i in 0..<2{
                 let newKOMatch = KOMatch(id: UUID(), matchname: "Halbfinale:    ", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[3-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
                 self.komatches.append(newKOMatch)
             }
             
         }
-        else if teamsList.count < 16{
+        else if selectedRound.roundname == "Viertelfinale"{
+            while teamsList.count < 8 {
+                addNewTeam()
+            }
+               let sortedList = teamsList.sorted{
+                    if $0.wins != $1.wins{
+                        return $0.wins > $1.wins
+                    }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
+                        return $0.pointsFor > $1.pointsFor
+                    }else{
+                        return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+                    }
+                    
+                }
             for i in 0..<4{
                 let newKOMatch = KOMatch(id: UUID(), matchname: "Viertelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[7-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
                 self.komatches.append(newKOMatch)
@@ -178,7 +241,20 @@ struct ResultsView: View {
           
             
         }
-        else if teamsList.count < 32{
+        else if selectedRound.roundname == "Achtelfinale"{
+            while teamsList.count < 16 {
+                addNewTeam()
+            }
+               let sortedList = teamsList.sorted{
+                    if $0.wins != $1.wins{
+                        return $0.wins > $1.wins
+                    }else if ($0.pointsFor-$0.pointsAgainst) == ($1.pointsFor-$1.pointsAgainst){
+                        return $0.pointsFor > $1.pointsFor
+                    }else{
+                        return ($0.pointsFor-$0.pointsAgainst) > ($1.pointsFor-$1.pointsAgainst)
+                    }
+                    
+                }
             for i in 0..<8{
                 let newKOMatch = KOMatch(id: UUID(), matchname: "Achtelfinale:", matchnumber: i+1, team1: sortedList[0+i], team2: sortedList[15-i], scoreteam1: 0, scoreteam2: 0, winner: sortedList[0+i], commited: false)
                 self.komatches.append(newKOMatch)

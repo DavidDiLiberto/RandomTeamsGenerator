@@ -66,7 +66,7 @@ struct ContentView: View {
                     Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
                 }
                 .tag(2)
-            ResultsView(playersList: $playersList, teamsList: $teamsList, matches: $matches, komatches: $komatches,selectedTab: $selectedTab, commitedResults: $commitedResults, winner: $winner)
+            ResultsView(playersList: $playersList, teamsList: $teamsList, matches: $matches, komatches: $komatches,selectedTab: $selectedTab, commitedResults: $commitedResults, winner: $winner, selectedRound: $selectedRound, removedTeamNames: $removedTeamNames, removedTeamColors: $removedTeamColors, teamNames: $teamNames, teamColors: $teamColors)
                 .tabItem    {
                     Label("Results", systemImage: "table")
                 }
