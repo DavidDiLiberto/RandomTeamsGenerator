@@ -26,6 +26,10 @@ public struct MatchView: View {
     @Binding var commitedResults: Bool
     @Binding var commitedMatches : Bool
     @Binding var allMatchesCommited : Bool
+    @Binding var matchSettingsCommitted : Bool
+    @Binding var skipToKORound : Bool
+    @Binding var selectedSettingsOption : Int
+    let settingsOptions = ["Liga + anschließende KO Runde", "Direkt zu KO Runde springen"]
     let scores = [0,1,2,3,4,5,6]
     
     
@@ -76,6 +80,20 @@ public struct MatchView: View {
             
         }
     }
+        struct RoundedRectangleButtonStyleBlue: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.blue)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
     
     public var body: some View {
         VStack {
@@ -96,9 +114,20 @@ public struct MatchView: View {
         
         NavigationView{
             
-            if matches.count>0{
+            if matches.count>0 && matchSettingsCommitted == true{
                 
                 VStack{
+
+                     Button{
+                
+                        matchSettingsCommitted = false
+                        
+                        
+                    }label: {
+                        Label("Einstellungen bearbeiten", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleBlue())
+                    .frame(width: 300, height: 55, alignment: .center)
                     
                     List(0..<matches.count, id: \.self) { matchindex in
                         NavigationLink(destination: SingleMatchesView(playersList: $playersList, teamsList: $teamsList, matches: $matches, match: $matches[matchindex], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches, commitedMatches: $commitedMatches, allMatchesCommited: $allMatchesCommited)){
@@ -176,6 +205,36 @@ public struct MatchView: View {
                         .padding()
                     }
                 }
+            }else{
+
+            VStack{
+
+                 Picker("", selection: $selectedSettingsOption) {
+                    ForEach(0..<settingsOptions.count, id: \.self) { index in
+                        Text(settingsOptions[index])
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle()) // Segmented Picker Style
+
+
+                Button{
+                            matchSettingsCommitted = true
+                            selectedTab = 4
+                            if selectedSettingsOption == 1{
+                                skipToKORound = true
+                            }else{
+                                skipToKORound = false
+                            }
+                }label: {
+                            Label("Einstellungen Bestätigen", systemImage: "checkmark.circle.fill")
+                    }
+                        .buttonStyle(RoundedRectangleButtonStyleGreen())
+                        .frame(width: 300, height: 55, alignment: .center)
+                        .padding()
+
+            }
+
+
             }
            
         }
