@@ -29,8 +29,11 @@ public struct MatchView: View {
     @Binding var matchSettingsCommitted : Bool
     @Binding var skipToKORound : Bool
     @Binding var selectedSettingsOption : Int
-    let settingsOptions = ["Liga + anschließende KO Runde", "Direkt zu KO Runde springen"]
+    @Binding var selectedScoreGoalWinnerStays : Int
+    @Binding var komatchSettingsCommitted: Bool
+    let settingsOptions = ["Liga + KO Runde", "direkte KO Runde", "Winner Stays"]
     let scores = [0,1,2,3,4,5,6]
+    let scoreGoalsWinnerStays = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
     
     
     
@@ -121,6 +124,8 @@ public struct MatchView: View {
                      Button{
                 
                         matchSettingsCommitted = false
+                        komatchSettingsCommitted = false
+                        komatches.removeAll()
                         
                         
                     }label: {
@@ -207,14 +212,50 @@ public struct MatchView: View {
                 }
             }else{
 
+                
+
             VStack{
 
-                 Picker("", selection: $selectedSettingsOption) {
+                Text("Einstellungen")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 20)
+                    .padding(.top, 100)
+
+                 Picker("", selection: $selectedSettingsOption) {  // Picker für Auwahl ob mit Liga oder direkt mit KO Runde gestartet werden soll
                     ForEach(0..<settingsOptions.count, id: \.self) { index in
                         Text(settingsOptions[index])
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle()) // Segmented Picker Style
+                .padding(.horizontal, 20) // Abstand zwischen Picker und Rand des Bildschirms
+
+
+                if selectedSettingsOption == 2{
+
+                    HStack{
+                        Text("Spiel bis ")
+
+                        VStack{
+                        Picker("Score Goal", selection: $selectedScoreGoalWinnerStays) {
+                            ForEach(scoreGoalsWinnerStays, id: \.self) {scoreGoals in
+                                Text("\(scoreGoals)")
+                                    .font(.system(size: 35))
+                                    .bold()
+                                
+                            }
+                        }.frame(width: 100, height: 200)
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 50)
+                        .clipped()
+
+                        Text("Siege")
+                    }
+
+                }
+                
+                Spacer()
 
 
                 Button{
@@ -230,7 +271,9 @@ public struct MatchView: View {
                     }
                         .buttonStyle(RoundedRectangleButtonStyleGreen())
                         .frame(width: 300, height: 55, alignment: .center)
-                        .padding()
+                        .padding(.bottom, 20)
+
+              
 
             }
 

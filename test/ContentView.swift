@@ -49,6 +49,8 @@ struct ContentView: View {
     @State var matchSettingsCommitted: Bool = false
     @State var skipToKORound: Bool = false
     @State var selectedSettingsOption: Int = 0
+    @State var selectedScoreGoalWinnerStays: Int = 11
+    @State var komatchSettingsCommitted: Bool = false
 
     var body: some View {
         
@@ -64,7 +66,7 @@ struct ContentView: View {
                     Label("Teams", systemImage: "person.3.fill")
                 }
                 .tag(1)
-            MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches, selectedTab: $selectedTab, commitedResults: $commitedResults, commitedMatches: $commitedMatches, allMatchesCommited: $allMatchesCommited, matchSettingsCommitted: $matchSettingsCommitted, skipToKORound: $skipToKORound, selectedSettingsOption: $selectedSettingsOption)
+            MatchView(playersList: $playersList, teamsList: $teamsList, matches: $matches, counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, komatches: $komatches, selectedTab: $selectedTab, commitedResults: $commitedResults, commitedMatches: $commitedMatches, allMatchesCommited: $allMatchesCommited, matchSettingsCommitted: $matchSettingsCommitted, skipToKORound: $skipToKORound, selectedSettingsOption: $selectedSettingsOption, selectedScoreGoalWinnerStays: $selectedScoreGoalWinnerStays, komatchSettingsCommitted: $komatchSettingsCommitted)
                 .tabItem    {
                     Label("Matchplan", systemImage: "figure.stand.line.dotted.figure.stand")
                 }
@@ -74,7 +76,7 @@ struct ContentView: View {
                     Label("Results", systemImage: "table")
                 }
                 .tag(3)
-            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner, rounds: $rounds, selectedRound: $selectedRound, selectedTab: $selectedTab, skipToKORound: $skipToKORound, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors)
+            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner, rounds: $rounds, selectedRound: $selectedRound, selectedTab: $selectedTab, skipToKORound: $skipToKORound, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, komatchSettingsCommitted: $komatchSettingsCommitted)
                 .tabItem    {
                     Label("KO Runde", systemImage: "trophy.fill")
                 }

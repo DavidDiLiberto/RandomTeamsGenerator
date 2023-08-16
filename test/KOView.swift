@@ -33,6 +33,7 @@ struct KOView: View {
     @Binding var removedTeamNames: [String]
     @Binding var teamColors: [Color]
     @Binding var removedTeamColors: [Color]
+    @Binding var komatchSettingsCommitted: Bool
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -78,7 +79,20 @@ struct KOView: View {
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
         }
     }
-    
+      struct RoundedRectangleButtonStyleBlue: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                Spacer()
+                configuration.label.foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            .background(Color.blue)
+            .background(RoundedRectangle(cornerRadius: .infinity))
+            .cornerRadius(.infinity)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
     
     public var body: some View {
         VStack {
@@ -108,19 +122,38 @@ struct KOView: View {
         VStack{
             
             if winner.isEmpty{
+
+                if komatchSettingsCommitted == true {
+
+                    Button{
+                
+                        komatchSettingsCommitted = false
+                        komatches.removeAll()
+                        
+                        
+                    }label: {
+                        Label("Einstellungen bearbeiten", systemImage: "pencil")
+                    }
+                    .buttonStyle(RoundedRectangleButtonStyleBlue())
+                    .frame(width: 300, height: 55, alignment: .center)
+                    
+                }
                 
                 
                 
                 NavigationView{
+
+                    
 
 // MARK: - Einstellungen
 // ANCHOR: - Einstellungen
 
                     if komatches.count == 0{
                         VStack{
-                            Text("Einstellungen für KO Runde")
+                            Text("Einstellungen")
                                 .font(.system(size: 30))
                                 .bold()
+                                .padding(.top, 250)
                                 .onAppear{
                                     recommendedRoundAfterLeague()
                                     showRecommendedRound()
@@ -140,7 +173,10 @@ struct KOView: View {
                                 
                             }
 
+                            Spacer()
+
                              Button{
+                                komatchSettingsCommitted = true
                                         if skipToKORound == true{
                                             createKOMatchplan()
                                             selectedTab = 4
