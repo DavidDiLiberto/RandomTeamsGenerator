@@ -34,6 +34,7 @@ struct KOView: View {
     @Binding var teamColors: [Color]
     @Binding var removedTeamColors: [Color]
     @Binding var komatchSettingsCommitted: Bool
+    @Binding var matches: [Match]
     
     struct RoundedRectangleButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
@@ -129,6 +130,11 @@ struct KOView: View {
                 
                         komatchSettingsCommitted = false
                         komatches.removeAll()
+                        for i in 0..<teamsList.count{  // Bye Week enfernen, wenn ko runden einstellungen bearbeitet werden
+                            if teamsList[i].teamname == "Bye Week"{
+                                teamsList.remove(at: i)
+                            }
+                        }
                         
                         
                     }label: {
@@ -148,7 +154,7 @@ struct KOView: View {
 // MARK: - Einstellungen
 // ANCHOR: - Einstellungen
 
-                    if komatches.count == 0{
+                    if komatches.count == 0 && komatchSettingsCommitted == false{
                         VStack{
                             Text("Einstellungen")
                                 .font(.system(size: 30))
@@ -177,10 +183,11 @@ struct KOView: View {
 
                              Button{
                                 komatchSettingsCommitted = true
-                                        if skipToKORound == true{
+                                 if skipToKORound == true || matches.last?.commited == true{  // Wenn Liga schon gespielt wurde, oder übersprungen werden soll, dann direkt KO Runde starten
                                             createKOMatchplan()
                                             selectedTab = 4
                                         }else{
+
                                             selectedTab = 2
                                         }
                             }label: {
@@ -1492,7 +1499,7 @@ struct KOView: View {
         
         if selectedRound.roundname == "Finale"{
             while teamsList.count < 2 {
-                addNewTeam()
+                addByeWeek()
             }
                let sortedList = teamsList.sorted{
                     if $0.wins != $1.wins{
@@ -1510,7 +1517,7 @@ struct KOView: View {
         }
         else if selectedRound.roundname == "Halbfinale"{
             while teamsList.count < 4 {
-                addNewTeam()
+                addByeWeek()
             }
                let sortedList = teamsList.sorted{
                     if $0.wins != $1.wins{
@@ -1530,7 +1537,7 @@ struct KOView: View {
         }
         else if selectedRound.roundname == "Viertelfinale"{
             while teamsList.count < 8 {
-                addNewTeam()
+                addByeWeek()
             }
                let sortedList = teamsList.sorted{
                     if $0.wins != $1.wins{
@@ -1551,7 +1558,7 @@ struct KOView: View {
         }
         else if selectedRound.roundname == "Achtelfinale"{
             while teamsList.count < 16 {
-                addNewTeam()
+                addByeWeek()
             }
                let sortedList = teamsList.sorted{
                     if $0.wins != $1.wins{
@@ -1573,30 +1580,10 @@ struct KOView: View {
         
     }
 
-         func addNewTeam(){
+    func addByeWeek(){
         
-        if teamNames.isEmpty {
-            if removedTeamNames.isEmpty{
-                let randomNumber = Int.random(in: 0..<100)
-                let newTeam = Team(id: UUID(), teamname: "Team \(randomNumber)", color: Color("test"), members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
-                self.teamsList.append(newTeam)
-            }else{
-                let randomNumber = Int.random(in: 0..<removedTeamNames.count)
-                let newTeam = Team(id: UUID(), teamname: "\(removedTeamNames[randomNumber])", color: removedTeamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
-                self.teamsList.append(newTeam)
-                self.removedTeamNames.remove(at: randomNumber)
-                self.removedTeamColors.remove(at: randomNumber)
-            }
-        }else {
-            
-            let randomNumber = Int.random(in: 0..<teamNames.count)
-            let newTeam = Team(id: UUID(), teamname: "Team \(teamNames[randomNumber])", color: teamColors[randomNumber], members: [], wins: 0, loses: 0, pointsFor: 0, pointsAgainst: 0)
-            self.teamsList.append(newTeam)
-            self.teamNames.remove(at: randomNumber)
-            self.teamColors.remove(at: randomNumber)
-            
-        }
-        
+        let newTeam = Team(id: UUID(), teamname: "Bye Week", color: Color("test"), members: [], wins: 0, loses: 99, pointsFor: 0, pointsAgainst: 99)
+        self.teamsList.append(newTeam)
         
     }
     func finaleMitHalb(){

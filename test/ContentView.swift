@@ -76,7 +76,7 @@ struct ContentView: View {
                     Label("Results", systemImage: "table")
                 }
                 .tag(3)
-            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner, rounds: $rounds, selectedRound: $selectedRound, selectedTab: $selectedTab, skipToKORound: $skipToKORound, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, komatchSettingsCommitted: $komatchSettingsCommitted)
+            KOView(confettiCounter: $confettiCounter, playersList: $playersList, teamsList: $teamsList, selectedScore: $selectedScore, komatches: $komatches, counter: $counter, matchcounter: $matchcounter, inSingleView: $inSingleView, winner: $winner, rounds: $rounds, selectedRound: $selectedRound, selectedTab: $selectedTab, skipToKORound: $skipToKORound, teamNames: $teamNames, removedTeamNames: $removedTeamNames, teamColors: $teamColors, removedTeamColors: $removedTeamColors, komatchSettingsCommitted: $komatchSettingsCommitted, matches: $matches)
                 .tabItem    {
                     Label("KO Runde", systemImage: "trophy.fill")
                 }
