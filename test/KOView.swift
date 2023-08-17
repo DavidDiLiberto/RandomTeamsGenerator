@@ -129,7 +129,7 @@ struct KOView: View {
                     Button{
                 
                         komatchSettingsCommitted = false
-                        komatches.removeAll()
+                        komatches.removeAll()  // alle ko spiele enfernen, wenn ko runden einstellungen bearbeitet werden
                         for i in 0..<teamsList.count{  // Bye Week enfernen, wenn ko runden einstellungen bearbeitet werden
                             if teamsList[i].teamname == "Bye Week"{
                                 teamsList.remove(at: i)
@@ -241,7 +241,7 @@ struct KOView: View {
                                             }
                                             
                                         }.frame(width: 320)
-                                    }else{
+                                    }else if komatches[i].commited == false && komatches[i].team1.teamname != "Bye Week" && komatches[i].team2.teamname != "Bye Week"{
                                         HStack(alignment: .center){
                                             
                                             
@@ -255,6 +255,19 @@ struct KOView: View {
                                                 .lineLimit(1)
                                                 .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
+                                    }else{ // wenn ein Team Bye Week hat
+
+                                          HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname)").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                            
+                                            Text("hat Bye Week")
+                                       
+                                        }
+
+
                                     }
                                     
                                 }
@@ -306,7 +319,7 @@ struct KOView: View {
                                             }
                                             
                                         }
-                                    }else{
+                                    }else if komatches[i].commited == false && komatches[i].team1.teamname != "Bye Week" && komatches[i].team2.teamname != "Bye Week"{
                                         HStack(alignment: .center){
                                             
                                             
@@ -320,6 +333,18 @@ struct KOView: View {
                                                 .lineLimit(1)
                                                 .frame(width: 130) // Hier wird die Breite des Texts 40% der Gesamtbreite des HStacks (320)
                                         }
+                                    }else{ // wenn ein Team Bye Week hat
+
+                                          HStack(alignment: .center){
+                                            
+                                            
+                                            Text("\(komatches[i].team1.teamname) hat bye Week").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
+                                                .lineLimit(1)
+                                                .frame(width: 320) 
+                                       
+                                        }
+
+
                                     }
                                     
                                 }

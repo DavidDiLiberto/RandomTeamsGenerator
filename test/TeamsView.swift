@@ -33,6 +33,8 @@ public struct TeamsView: View {
     @Binding var matchcounter: Int
     @Binding var commitedMatches : Bool
     @Binding var settingsCommitted : Bool
+    @Binding var komatches: [KOMatch]
+    @Binding var komatchSettingsCommitted: Bool
     var roundedPlayersPerTeam: Int{
         let numberOfPlayers = playersList.count + removedPlayersList.count
         let numberOfTeamsD = teamsList.count
@@ -195,6 +197,8 @@ public struct TeamsView: View {
                     commitedMatches = checkForCommittedMatches(matches: matches)
                     settingsCommitted = true
                     setTeamsNameToPlayerName() //setzt teamname auf playername wenn nur ein spieler im team ist
+                    komatches.removeAll() // löscht alle komatches
+                    komatchSettingsCommitted = false // setzt komatchSettingsCommitted auf false
                     }label: {
                         Label("Bestätigen", systemImage: "checkmark.circle.fill")
                     }
