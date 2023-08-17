@@ -130,7 +130,7 @@ struct KOView: View {
                 
                         komatchSettingsCommitted = false
                         komatches.removeAll()  // alle ko spiele enfernen, wenn ko runden einstellungen bearbeitet werden
-                        for i in 0..<teamsList.count{  // Bye Week enfernen, wenn ko runden einstellungen bearbeitet werden
+                        for i in (0..<teamsList.count).reversed(){  // Bye Week enfernen, wenn ko runden einstellungen bearbeitet werden
                             if teamsList[i].teamname == "Bye Week"{
                                 teamsList.remove(at: i)
                             }
@@ -292,7 +292,7 @@ struct KOView: View {
                             List(0..<komatches.count, id: \.self) { i in
                                 NavigationLink(destination: SingleKOMatchesView(playersList: $playersList, teamsList: $teamsList, komatches: $komatches, komatch: $komatches[i], counter: $counter, matchcounter: $matchcounter, selectedScore: $selectedScore, inSingleView: $inSingleView)){
                                     
-                                    if komatches[i].commited == true{
+                                    if komatches[i].commited == true && komatches[i].team1.teamname != "Bye Week" && komatches[i].team2.teamname != "Bye Week"{
                                         HStack(alignment: .center){
                                             
                                             
@@ -335,15 +335,16 @@ struct KOView: View {
                                         }
                                     }else{ // wenn ein Team Bye Week hat
 
-                                          HStack(alignment: .center){
-                                            
-                                            
-                                            Text("\(komatches[i].team1.teamname) hat bye Week").minimumScaleFactor(0.05) // Stellt die minimale Skalierung der Schriftgröße ein (z. B. 0.5 für 5% der ursprünglichen Schriftgröße)
-                                                .lineLimit(1)
-                                                .frame(width: 320) 
-                                       
-                                        }
+                                           HStack(alignment: .center) {
+                                                Text("\(komatches[i].winner.teamname) hat bye Week")
+                                                    .minimumScaleFactor(0.05)
+                                                    .lineLimit(1)
+                                                    .frame(width: 320)
+                                            }.onAppear{
+                                                // automatisches Weiterkommen der Teams, die gegen Bye Week gespielt haben
+                                                continueWithByeWeekMatch(matchIndex: i)
 
+                                            }
 
                                     }
                                     
@@ -1604,6 +1605,15 @@ struct KOView: View {
         }
         
     }
+
+    func continueWithByeWeekMatch(matchIndex: Int) {  // automatisches weiterkommen bei bye week
+        
+        komatches[matchIndex].scoreteam1 = 1
+        komatches[matchIndex].winner = komatches[matchIndex].team1
+        komatches[matchIndex].commited = true
+          
+    }
+   
 
     func addByeWeek(){
         
